@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.98 35.49">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #1d1d1b;
+        stroke: #1d1d1b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="M3.06,16.26c3.02,1.29,4.91,2.34,6.74,3.37l9.22-10.21c-2.1-2.21-3.63-4.39-4.47-6.52L3.06,16.26Z"/>
+  <line class="cls-1" x1="13.02" y1="32.89" x2="29.02" y2="16.34"/>
+  <rect class="cls-1" x="29.85" y="10.89" width="2.35" height="6.66" transform="translate(-1.07 25.83) rotate(-44.51)"/>
+  <path class="cls-2" d="M32.48,10.51c1.55-1.92,2.83-3.86,3.55-5.84l4.13,4.1c-2.15,1.22-4.17,2.48-5.4,4l-2.27-2.26Z"/>
+  <line class="cls-1" x1="22.51" y1="22.81" x2="14.21" y2="14.55"/>
+  <line class="cls-1" x1="31.49" y1="32.26" x2="27.79" y2="28.21"/>
+  <line class="cls-2" x1="14.21" y1="19.23" x2="19.32" y2="13.28"/>
+</svg>

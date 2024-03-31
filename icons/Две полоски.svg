@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.32 35.4">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <ellipse class="cls-1" cx="8.31" cy="8.25" rx="5.25" ry="4.95"/>
+  <ellipse class="cls-1" cx="30.75" cy="27.05" rx="5.25" ry="4.95"/>
+  <line class="cls-1" x1="34.83" y1="8.32" x2="14.43" y2="8.32"/>
+  <line class="cls-1" x1="25.51" y1="26.1" x2="3.65" y2="26.1"/>
+</svg>

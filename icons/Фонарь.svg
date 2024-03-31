@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.3 32.81">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #1d1d1b;
+        stroke: #1d1d1b;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #fff;
+      }
+
+      .cls-3, .cls-2 {
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="1.91" y="9.06" width="22.47" height="22.47"/>
+  <ellipse class="cls-3" cx="13.57" cy="19.7" rx="5.79" ry="6.04"/>
+  <path class="cls-2" d="M.92,3.54h3.47c.83,0,1.51,.78,1.51,1.75v2.16c0,.97-.68,1.75-1.51,1.75H.92"/>
+  <path class="cls-2" d="M25.39,3.49h-3.47c-.83,0-1.51,.78-1.51,1.75v2.16c0,.97,.68,1.75,1.51,1.75h3.47"/>
+  <rect class="cls-2" x="9.66" y="1.32" width="7.23" height="8" rx=".85" ry=".85"/>
+</svg>

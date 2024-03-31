@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:service_app/screens/login/login.dart';
+import 'package:service_app/screens/login/register.dart';
+import 'package:service_app/screens/login/select.dart';
+import 'package:service_app/screens/splash/splashscreen.dart';
+
+class AppNavigation {
+  AppNavigation._();
+
+  static String initR = '/splash';
+
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _rootNavigatorSplash =
+      GlobalKey<NavigatorState>(debugLabel: 'shellSplash');
+  static final _rootNavigatorLogin =
+      GlobalKey<NavigatorState>(debugLabel: 'shellLogin');
+  static final _rootNavigatorHome =
+      GlobalKey<NavigatorState>(debugLabel: 'shellHome');
+
+  static final GoRouter router = GoRouter(
+      initialLocation: initR,
+      navigatorKey: _rootNavigatorKey,
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/splash',
+          name: 'Splash',
+          builder: (context, state) {
+            Future.delayed(Duration(seconds: 3)).then((_) {
+              router.go('/select');
+            });
+            return SplashScreen(
+              key: state.pageKey,
+            );
+          },
+        ),
+        GoRoute(
+            path: '/select',
+            name: 'Select',
+            builder: (context, state) {
+              return SelectPage(key: state.pageKey);
+            },
+            routes: [
+              GoRoute(
+                  path: 'login',
+                  name: 'Login',
+                  builder: (context, state) {
+                    return LoginPage(key: state.pageKey);
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'register',
+                      name: 'LoginRegister',
+                      builder: (context, state) {
+                        return RegisterPage(key: state.pageKey);
+                      },
+                    )
+                  ]),
+              GoRoute(
+                path: 'register',
+                name: 'Register',
+                builder: (context, state) {
+                  return RegisterPage(key: state.pageKey);
+                },
+              )
+            ]),
+
+        /*GoRoute(
+          path: '/successreg',
+          name: 'SuccessReg',
+          builder: (context, state) {
+            return SuccessfulRegister(key: state.pageKey);
+          },
+        ),*/
+      ]);
+}
