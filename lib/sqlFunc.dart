@@ -1,34 +1,71 @@
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sqflite/sqflite.dart' as sql;
+import 'dart:io';
+import 'dart:typed_data';
 
 class SQLHelper {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   static String customer = '';
   static Future<void> createTables(sql.Database database) async {
-    await database.execute("""CREATE TABLE products(
-      id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      title TEXT,
-      description TEXT,
-      price INTEGER,
-      discount INTEGER,
-      inStock TEXT,
-      tags TEXT,
-      rating REAL,
-      image BLOB,
-      discountTime TEXT
-    )""");
+    await database.execute("""CREATE TABLE users (
+user_id INT PRIMARY KEY,
+login VARCHAR(255),
+password VARCHAR(255),
+email VARCHAR(255),
+phone_number INTEGER,
+role VARCHAR(255),
+image BLOB,
+city VARCHAR(255)
+)""");
 
-        await database.execute("""CREATE TABLE users(
-      id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      name TEXT,
-      password TEXT,
-      email TEXT
-    )""");
-    
-    
+    await database.execute("""CREATE TABLE clients (
+user_id INT REFERENCES users(user_id),
+client_id INT PRIMARY KEY,
+user_name VARCHAR(255),
+picture BLOB,
+address VARCHAR(255)
+)""");
+
+    await database.execute("""CREATE TABLE favorite_sellers (
+client_id INTEGER REFERENCES clients(client_id),
+seller_id INTEGER REFERENCES sellers(seller_id),
+id INT PRIMARY KEY,
+)""");
+
+    await database.execute("""CREATE TABLE tickets (
+client_id INT REFERENCES clients(client_id),
+seller_id INT REFERENCES sellers(seller_id),
+offer_id INT REFERENCES offers(offer_id),
+ticket_id INT PRIMARY KEY,
+status BOOL,
+to_pay FLOAT,
+feedback VARCHAR(255),
+date_purchase DATE
+)""");
+
+    await database.execute("""CREATE TABLE sellers (
+user_id INT REFERENCES users(user_id),
+seller_id INT PRIMARY KEY,
+passport BLOB,
+seller_name VARCHAR(255),
+main_picture BLOB,
+description VARCHAR(255),
+pictures ARRAY[BLOB],
+rating INTEGER,
+category VARCHAR(255),
+price NUMERIC
+)""");
+
+    await database.execute("""CREATE TABLE offers (
+seller_id INT REFERENCES sellers(seller_id),
+offer_id INT PRIMARY KEY,
+percent FLOAT,
+date_offer DATE
+)""");
   }
 
-    static Future<sql.Database> db() async {
+  static Future<sql.Database> db() async {
     return sql.openDatabase(
       'shop.db',
       version: 1,
@@ -39,211 +76,251 @@ class SQLHelper {
     );
   }
 
-    static Future<int> createItem(
-      String title,
-      String? description,
-      int? price,
-      int? discount,
-      String? inStock,
-      String? tags,
-      double? rating,
-      Uint8List? image,
-      String? discountTime) async {
+  static Future<void> addSeller(
+      int userId,
+      int sellerId,
+      Uint8List passport,
+      String sellerName,
+      Uint8List mainPicture,
+      String description,
+      List<Uint8List> pictures,
+      int rating,
+      String category,
+      num price) async {
     final db = await SQLHelper.db();
-  DateTime currentTime = DateTime.now();
-  DateTime discountExpiration = currentTime.add(Duration(hours: 24));
-
-  String formattedDiscountTime = discountExpiration.toIso8601String(); // пусть пока на все товары скидка 24 часа будет
-    final data = {
-      'title': title,
+    await db.insert('sellers', {
+      'user_id': userId,
+      'seller_id': sellerId,
+      'passport': passport,
+      'seller_name': sellerName,
+      'main_picture': mainPicture,
       'description': description,
-      'price': price,
-      'discount': discount,
-      'inStock': inStock,
-      'tags': tags,
+      'pictures': pictures,
       'rating': rating,
-      'image': image,
-      'discountTime': formattedDiscountTime
-    };
-
-    final id = await db.insert('products', data,
-        conflictAlgorithm: sql.ConflictAlgorithm.replace);
-    return id;
+      'category': category,
+      'price': price,
+    });
   }
 
-  static Future<List<Map<String, dynamic>>> getItems() async {
+  static Future<List<Map<String, dynamic>>> getSellers() async {
     final db = await SQLHelper.db();
-    return db.query('products', orderBy: "id");
+    return db.query('sellers', orderBy: "seller_id");
   }
 
-  static Future<List<Map<String, dynamic>>> getItem(int id) async {
+  static Future<List<Map<String, dynamic>>> getSeller(int id) async {
     final db = await SQLHelper.db();
-    return db.query('products', where: "id = ?", whereArgs: [id], limit: 1);
+    return db.query('sellers',
+        where: "seller_id = ?", whereArgs: [id], limit: 1);
   }
 
-  static Future<int> updateItem(
-      int id,
-      String title,
-      String? description,
-      int? price,
-      int? discount,
-      String? inStock,
-      String? tags,
-      double? rating,
-      Uint8List? image) async {
+  static Future<int> updateSeller(
+      int sellerId,
+      int userId,
+      Uint8List passport,
+      String sellerName,
+      Uint8List mainPicture,
+      String description,
+      List<Uint8List> pictures,
+      int rating,
+      String category,
+      num price) async {
     final db = await SQLHelper.db();
 
     final data = {
-      'title': title,
+      'user_id': userId,
+      'passport': passport,
+      'seller_name': sellerName,
+      'main_picture': mainPicture,
       'description': description,
-      'price': price,
-      'discount': discount,
-      'inStock': inStock,
-      'tags': tags,
+      'pictures': pictures,
       'rating': rating,
-      'image': image
+      'category': category,
+      'price': price,
     };
 
-    final result =
-        await db.update('products', data, where: "id = ?", whereArgs: [id]);
+    final result = await db
+        .update('sellers', data, where: "seller_id = ?", whereArgs: [sellerId]);
     return result;
   }
 
-  static Future<void> deleteItem(int id) async {
+  static Future<void> deleteSeller(int id) async {
     final db = await SQLHelper.db();
     try {
-      await db.delete("products", where: "id = ?", whereArgs: [id]);
+      await db.delete("sellers", where: "seller_id = ?", whereArgs: [id]);
     } catch (err) {
-      debugPrint("Не получилось удалить товар: $err");
+      debugPrint("Не получилось удалить продавца: $err");
     }
   }
 
+  //поиск продавца по имени
   static Future<List<Map<String, dynamic>>> searchByName(String title) async {
     final db = await SQLHelper.db();
     return await db
-        .query('products', where: 'title LIKE ?', whereArgs: ['%$title%']);
+        .query('sellers', where: 'seller_name LIKE ?', whereArgs: ['%$title%']);
   }
 
   //регистрация
-  static Future<void> registerUser(String name, String password, String email) async {
+
+  static Future<bool> isEmailRegistered(String email) async {
     final db = await SQLHelper.db();
-    
-    // Проверяем, существует ли пользователь с таким email
-    List<Map<String, dynamic>> existingUsers = await db.query('users', where: 'email = ?', whereArgs: [email]);
-
-    if (existingUsers.isNotEmpty) {
-      // Пользователь с таким email уже существует
-      print('Пользователь с таким email уже существует');
-      return;
-    }
-
-    // Вставляем нового пользователя
-    await db.insert('users', {
-      'name': name,
-      'password': password,
-      'email': email,
-    });
-    //await SQLHelper.registerUser('Имя', 'Пароль', 'email@example.com'); - пример использования
-
-  }
-//регистрация через гугл
-  static Future<void> registerUserGoogle(String name, String password, String email) async {
-  final db = await SQLHelper.db();
-
-  // Регистрация пользователя через Google
-  GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  if (googleUser == null) {
-    // Пользователь отменил вход через Google
-    print('Вход через Google отменен');
-    return;
+    var result = await db.rawQuery(
+        'SELECT COUNT(*) AS count FROM users WHERE email = ?', [email]);
+    var count = int.parse(result.first['count'].toString());
+    return count > 0;
   }
 
-  // Дополнительная информация о пользователе
-  GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-  String googleIdToken = googleAuth.idToken ?? "";
-
-  // Получаем реальный адрес электронной почты пользователя
-  String userEmail = googleUser.email;
-
-  // Проверяем, существует ли пользователь с таким email
-  List<Map<String, dynamic>> existingUsers = await db.query('users', where: 'email = ?', whereArgs: [userEmail]);
-
-  if (existingUsers.isNotEmpty) {
-    // Пользователь с таким email уже существует
-    print('Пользователь с таким email уже существует');
-    return;
-  }
-
-  // Вставляем нового пользователя
-  await db.insert('users', {
-    'name': name,
-    'password': googleIdToken,
-    'email': userEmail,
-  });
-
-  print('Пользователь успешно зарегистрирован через Google');
-}
-
-  static Future<bool> authenticateUser(String email, String password) async {
+  static Future<void> registerPartOne(String email, String password) async {
     final db = await SQLHelper.db();
-
-    // Проверяем, существует ли пользователь с заданным email и паролем
-    List<Map<String, dynamic>> user = await db.query('users',
-        where: 'email = ? AND password = ?', whereArgs: [email, password]);
-
-    if (user.isNotEmpty) {
-      // Пользователь успешно аутентифицирован
-      customer = user[0]['name']; // Сохраняем имя пользователя в customer
-      return true;
+    var isRegistered = await isEmailRegistered(email);
+    if (isRegistered) {
+      throw Exception('Пользователь с таким email уже зарегистрирован.');
     } else {
-      // Пользователь с заданным email и паролем не найден
+      await db.execute('''
+        INSERT INTO users (email, password)
+        VALUES (?, ?)
+      ''', [email, password]);
+    }
+  }
+
+  //Эту вторую часть можно вызывать когда пользователь хочет имзенить свои данные или нужно заполнить после регистрации через гугл.
+  static Future<void> registerPartTwo(
+      int userId,
+      String firstName,
+      String lastName,
+      DateTime birthDate,
+      int phoneNumber,
+      String address) async {
+    final db = await SQLHelper.db();
+    await db.execute('''
+      UPDATE users
+      SET 
+        first_name = ?,
+        last_name = ?,
+        birth_date = ?,
+        phone_number = ?,
+        address = ?
+      WHERE user_id = ?
+    ''', [
+      firstName,
+      lastName,
+      birthDate.toString(),
+      phoneNumber,
+      address,
+      userId
+    ]);
+  }
+  /*Пример использования
+  
+    if (await registration.isEmailRegistered(email)) {
+    print('Пользователь с таким email уже зарегистрирован.');
+  } else {
+    await registration.registerPartOne(email, password);
+
+    // Здесь вы должны получить userId из базы данных после первой части регистрации.
+    // Предположим, что userId = 1
+
+    await registration.registerPartTwo(1, 'Иван', 'Иванов', DateTime(1990, 1, 1), 1234567890, 'Улица Пушкина, дом Колотушкина');
+  } */
+
+//регистрация через гугл
+  Future<bool> isGoogleAccountRegistered(String email) async {
+    final db = await SQLHelper.db();
+    var result = await db.rawQuery(
+        'SELECT COUNT(*) AS count FROM users WHERE email = ?', [email]);
+    var count = int.parse(result.first['count'].toString());
+    return count > 0;
+  }
+
+  Future<void> registerViaGoogle() async {
+    final db = await SQLHelper.db();
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        // Пользователь отменил вход через Google
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final email = googleUser.email;
+      final isRegistered = await isGoogleAccountRegistered(email);
+      if (isRegistered) {
+        // Пользователь с таким email уже зарегистрирован
+        throw Exception('Пользователь с таким email уже зарегистрирован.');
+      } else {
+        // Регистрация нового пользователя
+        await db.execute('''
+          INSERT INTO users (email)
+          VALUES (?)
+        ''', [email]);
+      }
+    } catch (error) {
+      // Обработка ошибок
+      print('Ошибка при регистрации через Google: $error');
+    }
+  }
+
+//авторизация через гугл
+  Future<bool> authenticateWithEmailPassword(
+      String email, String password) async {
+    final db = await SQLHelper.db();
+    var result = await db.rawQuery(
+        'SELECT COUNT(*) AS count FROM users WHERE email = ? AND password = ?',
+        [email, password]);
+    var count = int.parse(result.first['count'].toString());
+    return count > 0;
+  }
+
+  Future<bool> authenticateWithGoogle() async {
+    final db = await SQLHelper.db();
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final email = googleUser.email;
+
+      var result = await db.rawQuery(
+          'SELECT COUNT(*) AS count FROM users WHERE email = ?', [email]);
+      var count = int.parse(result.first['count'].toString());
+      return count > 0;
+    } catch (error) {
+      print('Ошибка при аутентификации через Google: $error');
       return false;
     }
-
-    /** Пример использования
-     * bool isAuthenticated = await SQLHelper.authenticateUser('email@example.com', 'password');
-
-if (isAuthenticated) {
-  print('Пользователь успешно авторизован. Имя пользователя: ${SQLHelper.customer}');
-} else {
-  print('Неверный email или пароль');
+  }
 }
 
-     */
-  }
- // авторизация через гугл
-  static Future<void> loginUserGoogle() async {
+//Пользователь загружает аватарку
+Future<void> uploadAvatar(String email, File imageFile) async {
   final db = await SQLHelper.db();
+  // Чтение содержимого изображения как массива байт
+  Uint8List bytes = await imageFile.readAsBytes();
 
-  try {
-    // Попытка входа через Google
-    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  // Сохранение содержимого изображения в базу данных
+  await db.rawInsert('''
+      UPDATE users
+      SET image = ?
+      WHERE email = ?
+    ''', [bytes, email]);
+}
 
-    if (googleUser == null) {
-      // Пользователь отменил вход через Google
-      print('Вход через Google отменен');
-      return;
-    }
+  /*Пример использования 
+  
+  void main() async {
+  var avatarUploader = AvatarUploader(database);
 
-    // Дополнительная информация о пользователе
-    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    String googleIdToken = googleAuth.idToken ?? "";
-
-    // Проверяем, существует ли пользователь с таким googleIdToken
-    List<Map<String, dynamic>> existingUsers =
-        await db.query('users', where: 'password = "$googleIdToken"');
-
-    if (existingUsers.isNotEmpty) {
-      // Пользователь с таким googleIdToken уже существует
-      print('Пользователь с таким googleIdToken уже существует');
-      return;
-    }
-
-    // Вход пользователя в ваше приложение. Здесь может потребоваться дополнительная логика.
-
-    print('Пользователь успешно вошел через Google');
-  } catch (error) {
-    print('Ошибка входа через Google: $error');
+  final picker = ImagePicker();
+  final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  if (pickedFile != null) {
+    var file = File(pickedFile.path);
+    await avatarUploader.uploadAvatar('example@example.com', file);
+    print('Аватарка успешно загружена');
+  } else {
+    print('Изображение не выбрано');
   }
-}
-}
+} */

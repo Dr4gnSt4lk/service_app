@@ -164,7 +164,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 54,
                         margin: EdgeInsets.only(left: 20, right: 20, top: 5),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            if (await SQLHelper.isEmailRegistered(
+                                emailController.text)) {
+                              print(
+                                  'Пользователь с таким email уже зарегистрирован.');
+                            } else {
+                              await SQLHelper.registerPartOne(
+                                  emailController.text,
+                                  passwordController.text);
+                            }
+                          },
                           child: Text(
                             'Зарегистрироваться',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -230,7 +240,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     ),
                                   ),
                                   onTap: () {
-                                    loginUserWithGoogle(context);
+                                    //loginUserWithGoogle(context);
                                   },
                                 )))
                       ]))
@@ -238,7 +248,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-Future<void> loginUserWithGoogle(BuildContext context) async {
+/*Future<void> loginUserWithGoogle(BuildContext context) async {
   try {
     // Вызов функции loginUserGoogle из QLHelper
     await SQLHelper.loginUserGoogle();
@@ -253,4 +263,4 @@ Future<void> loginUserWithGoogle(BuildContext context) async {
       content: Text('Ошибка: $error'),
     ));
   }
-}
+}*/

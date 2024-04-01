@@ -23,7 +23,9 @@ dependencies:
   google_fonts: 6.1.0
   google_sign_in: ^6.2.1
   go_router: ^13.0.1
-  sliding_clipped_nav_bar: ^3.1.0+4
+  sliding_clipped_nav_bar:
+    git:
+      url: https://github.com/Dr4gnSt4lk/sliding_clipped_nav_bar
   flutter_native_splash: ^2.3.9
   flutter_multi_formatter: ^2.12.4
   mask_text_input_formatter: ^2.9.0

@@ -230,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   onTap: () {
-                                    loginUserWithGoogle(context);
+                                    //loginUserWithGoogle(context);
                                   },
                                 )))
                       ])),
@@ -259,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Future<void> loginUserWithGoogle(BuildContext context) async {
+/*Future<void> loginUserWithGoogle(BuildContext context) async {
   try {
     // Вызов функции loginUserGoogle из QLHelper
     await SQLHelper.loginUserGoogle();
@@ -274,4 +274,4 @@ Future<void> loginUserWithGoogle(BuildContext context) async {
       content: Text('Ошибка: $error'),
     ));
   }
-}
+}*/
