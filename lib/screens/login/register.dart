@@ -173,6 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               await SQLHelper.registerPartOne(
                                   emailController.text,
                                   passwordController.text);
+                              context.goNamed('Fill');
                             }
                           },
                           child: Text(

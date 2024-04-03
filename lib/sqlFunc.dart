@@ -9,7 +9,7 @@ class SQLHelper {
   static String customer = '';
   static Future<void> createTables(sql.Database database) async {
     await database.execute("""CREATE TABLE users (
-user_id INT PRIMARY KEY,
+user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 login VARCHAR(255),
 password VARCHAR(255),
 email VARCHAR(255),
@@ -20,8 +20,8 @@ city VARCHAR(255)
 )""");
 
     await database.execute("""CREATE TABLE clients (
-user_id INT REFERENCES users(user_id),
-client_id INT PRIMARY KEY,
+user_id INTEGER REFERENCES users(user_id),
+client_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 user_name VARCHAR(255),
 picture BLOB,
 address VARCHAR(255)
@@ -30,14 +30,14 @@ address VARCHAR(255)
     await database.execute("""CREATE TABLE favorite_sellers (
 client_id INTEGER REFERENCES clients(client_id),
 seller_id INTEGER REFERENCES sellers(seller_id),
-id INT PRIMARY KEY,
+id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 )""");
 
     await database.execute("""CREATE TABLE tickets (
-client_id INT REFERENCES clients(client_id),
-seller_id INT REFERENCES sellers(seller_id),
-offer_id INT REFERENCES offers(offer_id),
-ticket_id INT PRIMARY KEY,
+client_id INTEGER REFERENCES clients(client_id),
+seller_id INTEGER REFERENCES sellers(seller_id),
+offer_id INTEGER REFERENCES offers(offer_id),
+ticket_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 status BOOL,
 to_pay FLOAT,
 feedback VARCHAR(255),
@@ -45,8 +45,8 @@ date_purchase DATE
 )""");
 
     await database.execute("""CREATE TABLE sellers (
-user_id INT REFERENCES users(user_id),
-seller_id INT PRIMARY KEY,
+user_id INTEGER REFERENCES users(user_id),
+seller_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 passport BLOB,
 seller_name VARCHAR(255),
 main_picture BLOB,
@@ -58,8 +58,8 @@ price NUMERIC
 )""");
 
     await database.execute("""CREATE TABLE offers (
-seller_id INT REFERENCES sellers(seller_id),
-offer_id INT PRIMARY KEY,
+seller_id INTEGER REFERENCES sellers(seller_id),
+offer_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 percent FLOAT,
 date_offer DATE
 )""");

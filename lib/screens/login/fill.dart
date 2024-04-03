@@ -228,7 +228,15 @@ class _FillPageState extends State<FillPage> {
                         height: 54,
                         margin: EdgeInsets.only(left: 20, right: 20, top: 55),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await SQLHelper.registerPartTwo(
+                                1,
+                                nameController.text,
+                                surnameController.text,
+                                DateTime(1990, 1, 1),
+                                int.parse(phoneController.text),
+                                addressController.text);
+                          },
                           child: Text(
                             'Продолжить',
                             style: TextStyle(fontWeight: FontWeight.bold),

@@ -6,6 +6,7 @@ import 'package:service_app/screens/home/calendar.dart';
 import 'package:service_app/screens/home/home.dart';
 import 'package:service_app/screens/home/inbox.dart';
 import 'package:service_app/screens/home/profile.dart';
+import 'package:service_app/screens/login/fill.dart';
 import 'package:service_app/screens/login/login.dart';
 import 'package:service_app/screens/login/register.dart';
 import 'package:service_app/screens/login/select.dart';
@@ -63,20 +64,34 @@ class AppNavigation {
                   },
                   routes: [
                     GoRoute(
-                      path: 'register',
-                      name: 'LoginRegister',
-                      builder: (context, state) {
-                        return RegisterPage(key: state.pageKey);
-                      },
-                    )
+                        path: 'register',
+                        name: 'LoginRegister',
+                        builder: (context, state) {
+                          return RegisterPage(key: state.pageKey);
+                        },
+                        routes: [
+                          GoRoute(
+                              path: 'fill',
+                              name: 'LoginFill',
+                              builder: (context, state) {
+                                return FillPage(key: state.pageKey);
+                              })
+                        ])
                   ]),
               GoRoute(
-                path: 'register',
-                name: 'Register',
-                builder: (context, state) {
-                  return RegisterPage(key: state.pageKey);
-                },
-              )
+                  path: 'register',
+                  name: 'Register',
+                  builder: (context, state) {
+                    return RegisterPage(key: state.pageKey);
+                  },
+                  routes: [
+                    GoRoute(
+                        path: 'fill',
+                        name: 'Fill',
+                        builder: (context, state) {
+                          return FillPage(key: state.pageKey);
+                        })
+                  ])
             ]),
 
         /*GoRoute(
