@@ -6,6 +6,7 @@ import 'package:service_app/constants.dart';
 import 'package:service_app/date_picker/date_field.dart';
 import 'package:service_app/sqlFunc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:intl/intl.dart';
 
 class FillPage extends StatefulWidget {
   const FillPage({super.key});
@@ -233,8 +234,10 @@ class _FillPageState extends State<FillPage> {
                                 1,
                                 nameController.text,
                                 surnameController.text,
-                                DateTime(1990, 1, 1),
-                                int.parse(phoneController.text),
+                                DateTime.parse(DateFormat('d/M/y')
+                                    .parse(dateController.text)
+                                    .toString()),
+                                phoneController.text,
                                 addressController.text);
                           },
                           child: Text(

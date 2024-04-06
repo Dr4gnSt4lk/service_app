@@ -7,13 +7,18 @@ import 'dart:typed_data';
 class SQLHelper {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   static String customer = '';
+  static int idUser = 0;
   static Future<void> createTables(sql.Database database) async {
     await database.execute("""CREATE TABLE users (
 user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 login VARCHAR(255),
 password VARCHAR(255),
 email VARCHAR(255),
-phone_number INTEGER,
+phone_number VARCHAR(255),
+birth_date DATE,
+first_name VARCHAR(255),
+last_name VARCHAR(255),
+address VARCHAR(255),
 role VARCHAR(255),
 image BLOB,
 city VARCHAR(255)
@@ -30,7 +35,7 @@ address VARCHAR(255)
     await database.execute("""CREATE TABLE favorite_sellers (
 client_id INTEGER REFERENCES clients(client_id),
 seller_id INTEGER REFERENCES sellers(seller_id),
-id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+id INT PRIMARY KEY AUTOINCREMENT NOT NULL
 )""");
 
     await database.execute("""CREATE TABLE tickets (
@@ -183,13 +188,8 @@ date_offer DATE
   }
 
   //Эту вторую часть можно вызывать когда пользователь хочет имзенить свои данные или нужно заполнить после регистрации через гугл.
-  static Future<void> registerPartTwo(
-      int userId,
-      String firstName,
-      String lastName,
-      DateTime birthDate,
-      int phoneNumber,
-      String address) async {
+  static Future<void> registerPartTwo(idUser, String firstName, String lastName,
+      DateTime birthDate, String phoneNumber, String address) async {
     final db = await SQLHelper.db();
     await db.execute('''
       UPDATE users
@@ -206,7 +206,7 @@ date_offer DATE
       birthDate.toString(),
       phoneNumber,
       address,
-      userId
+      idUser
     ]);
   }
   /*Пример использования
@@ -261,14 +261,15 @@ date_offer DATE
     }
   }
 
-//авторизация через гугл
-  Future<bool> authenticateWithEmailPassword(
+//авторизация
+  static Future<bool> authenticateWithEmailPassword(
       String email, String password) async {
     final db = await SQLHelper.db();
     var result = await db.rawQuery(
         'SELECT COUNT(*) AS count FROM users WHERE email = ? AND password = ?',
         [email, password]);
     var count = int.parse(result.first['count'].toString());
+    idUser = int.parse(result.first['user_id'].toString());
     return count > 0;
   }
 
@@ -309,7 +310,7 @@ Future<void> uploadAvatar(String email, File imageFile) async {
     ''', [bytes, email]);
 }
 
-  /*Пример использования 
+/*Пример использования 
   
   void main() async {
   var avatarUploader = AvatarUploader(database);

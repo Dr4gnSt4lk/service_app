@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:service_app/mainwrapper.dart';
 import 'package:service_app/screens/home/bookings.dart';
 import 'package:service_app/screens/home/calendar.dart';
-import 'package:service_app/screens/home/home.dart';
+import 'package:service_app/screens/home/mainpage/home.dart';
 import 'package:service_app/screens/home/inbox.dart';
 import 'package:service_app/screens/home/profile.dart';
 import 'package:service_app/screens/login/fill.dart';
@@ -15,7 +15,7 @@ import 'package:service_app/screens/splash/splashscreen.dart';
 class AppNavigation {
   AppNavigation._();
 
-  static String initR = '/splash';
+  static String initR = '/home';
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatorSplash =
