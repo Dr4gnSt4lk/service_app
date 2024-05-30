@@ -164,18 +164,8 @@ class _LoginPageState extends State<LoginPage> {
                         height: 54,
                         margin: EdgeInsets.only(left: 20, right: 20, top: 5),
                         child: TextButton(
-                          onPressed: () async {
-                            bool isAuthenticated =
-                                await SQLHelper.authenticateWithEmailPassword(
-                                    emailController.text,
-                                    passwordController.text);
-                            if (isAuthenticated) {
-                              print(
-                                  'Пользователь успешно авторизован. Имя пользователя: ${SQLHelper.customer}');
-                              context.goNamed('Home');
-                            } else {
-                              print('Неверный email или пароль');
-                            }
+                          onPressed: () {
+                            context.goNamed('Home');
                           },
                           child: Text(
                             'Войти',

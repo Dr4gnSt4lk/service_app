@@ -1,98 +1,152 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:service_app/constants.dart';
+import 'package:service_app/screens/home/calendar/event.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-class BookingsPage extends StatefulWidget {
-  const BookingsPage({super.key});
+class CalendarPage extends StatefulWidget {
+  const CalendarPage({super.key});
 
   @override
-  State<BookingsPage> createState() => _BookingsPageState();
+  State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _BookingsPageState extends State<BookingsPage> {
-  bool upcoming = true;
+class _CalendarPageState extends State<CalendarPage> {
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+  Map<DateTime, List<Event>> events = {};
+  @override
+  void initState() {
+    super.initState();
+    _selectedDay = _focusedDay;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!isSameDay(_selectedDay, selectedDay)) {
+      setState(() {
+        _selectedDay = selectedDay;
+        _focusedDay = focusedDay;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
+        backgroundColor: Colors.grey[50],
+        appBar: AppBar(
           scrolledUnderElevation: 0,
           title: Text(
-            'Мои Брони',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            'Мой Календарь',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: Container(
-              padding: EdgeInsets.only(left: 18, right: 18),
-              child: Row(children: [
-                Expanded(
-                    child: GestureDetector(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: upcoming ? iconColor : Colors.grey,
-                                width: upcoming ? 3 : 1))),
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: 5),
-                        child: Text(
-                          'Предстоящее',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: upcoming ? iconColor : Colors.grey),
-                        )),
-                  ),
-                  onTap: () {
-                    upcoming
-                        ? null
-                        : setState(() {
-                            upcoming = true;
-                          });
-                  },
-                )),
-                Expanded(
-                    child: GestureDetector(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: !upcoming ? iconColor : Colors.grey,
-                                width: !upcoming ? 4 : 1))),
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: 5),
-                        child: Text(
-                          'Выполнено',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: !upcoming ? iconColor : Colors.grey),
-                        )),
-                  ),
-                  onTap: () {
-                    !upcoming
-                        ? null
-                        : setState(() {
-                            upcoming = false;
-                          });
-                  },
-                ))
-              ]),
+            preferredSize: Size.fromHeight(20),
+            child: Container(),
+          ),
+        ),
+        body: ColorfulSafeArea(
+            child: SingleChildScrollView(
+                child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 300,
+              margin: EdgeInsets.only(left: 18, right: 18, top: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.purple[50],
+              ),
+              child: TableCalendar(
+                shouldFillViewport: true,
+                locale: 'ru_RU',
+                headerStyle: HeaderStyle(
+                    titleTextFormatter: (date, locale) {
+                      var formattedDate = DateFormat.yMMMM(locale).format(date);
+                      return formattedDate[0].toUpperCase() +
+                          formattedDate.substring(1);
+                    },
+                    formatButtonVisible: false,
+                    titleCentered: true,
+                    titleTextStyle:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                availableGestures: AvailableGestures.all,
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                focusedDay: _focusedDay,
+                firstDay: DateTime.utc(2024, 1, 1),
+                lastDay: DateTime.utc(2030, 1, 1),
+                onDaySelected: _onDaySelected,
+                calendarStyle: CalendarStyle(
+                  outsideDaysVisible: false,
+                ),
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                onPageChanged: (focusedDay) {
+                  _focusedDay = focusedDay;
+                },
+              ),
             ),
-          )),
-      body: ColorfulSafeArea(child: upcoming ? Upcoming() : Completed()),
-    );
+            _buildBody()
+          ],
+        ))));
+  }
+
+  Widget _buildBody() {
+    if (_selectedDay!.day == DateTime.now().day - 2 &&
+        _selectedDay!.month == DateTime.now().month &&
+        _selectedDay!.year == DateTime.now().year) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          margin: EdgeInsets.only(left: 18, top: 20, bottom: 10),
+          child: Text(
+            'Забронированные услуги (1)',
+            style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Completed()
+      ]);
+    } else if (_selectedDay!.day == DateTime.now().day + 3 &&
+        _selectedDay!.month == DateTime.now().month &&
+        _selectedDay!.year == DateTime.now().year) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          margin: EdgeInsets.only(left: 18, top: 20, bottom: 10),
+          child: Text(
+            'Забронированные услуги (2)',
+            style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Upcoming()
+      ]);
+    } else {
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          margin: EdgeInsets.only(left: 18, top: 20, bottom: 90),
+          child: Text(
+            'Забронированные услуги (0)',
+            style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Center(
+            child: Column(children: [
+          Text(
+            'Нет забронированных услуг',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 8),
+          Text(
+            'Вы не бронировали услуг на эту дату',
+            style: TextStyle(fontSize: 15),
+          )
+        ]))
+      ]);
+    }
   }
 
   Widget Upcoming() {

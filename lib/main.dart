@@ -3,11 +3,12 @@ import 'package:service_app/app_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:service_app/screens/login/fill.dart';
 import 'package:service_app/screens/login/login.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'screens/login/register.dart';
 
 void main() {
-  runApp(const MainApp());
+  initializeDateFormatting('ru_RU', null).then((_) => runApp(const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -21,9 +22,6 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
           textTheme:
               GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
-      //home: const RegisterPage(),
-      //home: const LoginPage(),
-      //home: const FillPage(),
       routerConfig: AppNavigation.router,
     );
   }

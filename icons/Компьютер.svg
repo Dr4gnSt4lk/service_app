@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.34 35.06">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #1d1d1b;
-        stroke: #1d1d1b;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 2px;
-      }
-    </style>
-  </defs>
-  <rect class="cls-1" x="18.21" y="9.03" width="20.85" height="16.4"/>
-  <rect class="cls-1" x="24.45" y="28.63" width="8.73" height="3.92"/>
-  <path class="cls-1" d="M3.06,2.26V31.84H13.58V2.26H3.06Zm4.99,26.58H3.06v-7.11h4.99v7.11Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.34 35.06" fill="#1d1d1b" stroke="#1d1d1b" stroke-linejoin="round" stroke-width="2" xmlns:v="https://vecta.io/nano"><path d="M18.21 9.03h20.85v16.4H18.21zm6.24 19.6h8.73v3.92h-8.73zM3.06 2.26v29.58h10.52V2.26H3.06zm4.99 26.58H3.06v-7.11h4.99v7.11z"/></svg>

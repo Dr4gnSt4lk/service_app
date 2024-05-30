@@ -1,10 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/mainwrapper.dart';
 import 'package:service_app/screens/home/bookings.dart';
-import 'package:service_app/screens/home/calendar.dart';
+import 'package:service_app/screens/home/calendar/calendar.dart';
+import 'package:service_app/screens/home/mainpage/favourite.dart';
 import 'package:service_app/screens/home/mainpage/home.dart';
 import 'package:service_app/screens/home/inbox.dart';
+import 'package:service_app/screens/home/mainpage/notification.dart';
+import 'package:service_app/screens/home/mainpage/services.dart';
+import 'package:service_app/screens/home/mainpage/special.dart';
 import 'package:service_app/screens/home/profile.dart';
 import 'package:service_app/screens/login/fill.dart';
 import 'package:service_app/screens/login/login.dart';
@@ -111,14 +117,50 @@ class AppNavigation {
             branches: <StatefulShellBranch>[
               StatefulShellBranch(navigatorKey: _rootNavigatorHome, routes: [
                 GoRoute(
-                  path: '/home',
-                  name: 'Home',
-                  builder: (context, state) {
-                    return HomePage(
-                      key: state.pageKey,
-                    );
-                  },
-                )
+                    path: '/home',
+                    name: 'Home',
+                    builder: (context, state) {
+                      return HomePage(
+                        key: state.pageKey,
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'favourite',
+                        name: 'Favourite',
+                        builder: (context, state) {
+                          return FavouritePage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'special',
+                        name: 'Special',
+                        builder: (context, state) {
+                          return SpecialPage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'services',
+                        name: 'Services',
+                        builder: (context, state) {
+                          return ServicesPage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                          path: 'notification',
+                          name: 'Notification',
+                          builder: (context, state) {
+                            return NotificationPage(
+                              key: state.pageKey,
+                            );
+                          })
+                    ])
               ]),
               StatefulShellBranch(
                   navigatorKey: _rootNavigatorBookings,

@@ -1,33 +1,41 @@
+import 'dart:math';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class FavouritePage extends StatefulWidget {
+  const FavouritePage({super.key});
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _FavouritePageState createState() => _FavouritePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
-  bool Tag1isPressed = false;
+class _FavouritePageState extends State<FavouritePage> {
+  bool Tag1isPressed = true;
   bool Tag2isPressed = false;
   bool Tag3isPressed = false;
   bool Tag4isPressed = false;
   bool Tag5isPressed = false;
   bool Tag6isPressed = false;
   bool isChecked = false;
+  var randomReviews = List<int>.generate(8, (_) => Random().nextInt(500) + 25);
+  var randomPrices =
+      List<int>.generate(8, (_) => Random().nextInt(5000) + 1000);
+  var randomRatings = List.generate(8, (_) => 2 + Random().nextDouble() * 3.0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(15, 0, 0, 0),
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          scrolledUnderElevation: 0,
+          backgroundColor: Colors.white,
           leading: IconButton(
               onPressed: () {
-                // GoRouter.of(context).pop();
+                GoRouter.of(context).pop();
               },
               icon: Transform.flip(
                   flipX: true,
@@ -54,165 +62,166 @@ class _ProfilePageState extends State<ProfilePage> {
                     // GoRouter.of(context).pop();
                   },
                   icon: Transform.flip(
-                      flipX: true,
                       child: SvgPicture.asset(
-                        'icons/3 точки.svg',
-                        height: 25,
-                      ))),
+                    'icons/3 точки.svg',
+                    height: 25,
+                  ))),
             )
           ],
           bottom: PreferredSize(
-              preferredSize: Size(0, 50),
+              preferredSize: Size.fromHeight(80),
               child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 15),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side:
-                                const BorderSide(width: 3.0, color: iconColor),
-                            foregroundColor:
-                                Tag1isPressed ? Colors.white : iconColor,
-                            backgroundColor:
-                                Tag1isPressed ? iconColor : Colors.white),
-                        child: Text(
-                          'Сиськи',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 13),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 3.0, color: iconColor),
+                                foregroundColor:
+                                    Tag1isPressed ? Colors.white : iconColor,
+                                backgroundColor:
+                                    Tag1isPressed ? iconColor : Colors.white),
+                            child: Text(
+                              'Все',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Tag1isPressed = !Tag1isPressed;
+                              });
+                            },
                           ),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            Tag1isPressed = !Tag1isPressed;
-                          });
-                        },
-                      ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 3.0, color: iconColor),
+                                foregroundColor:
+                                    Tag2isPressed ? Colors.white : iconColor,
+                                backgroundColor:
+                                    Tag2isPressed ? iconColor : Colors.white),
+                            child: Text(
+                              'Клининг',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Tag2isPressed = !Tag2isPressed;
+                              });
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 3.0, color: iconColor),
+                                foregroundColor:
+                                    Tag3isPressed ? Colors.white : iconColor,
+                                backgroundColor:
+                                    Tag3isPressed ? iconColor : Colors.white),
+                            child: Text(
+                              'Ремонт',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Tag3isPressed = !Tag3isPressed;
+                              });
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 3.0, color: iconColor),
+                                foregroundColor:
+                                    Tag4isPressed ? Colors.white : iconColor,
+                                backgroundColor:
+                                    Tag4isPressed ? iconColor : Colors.white),
+                            child: Text(
+                              'Покраска',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Tag4isPressed = !Tag4isPressed;
+                              });
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 3.0, color: iconColor),
+                                foregroundColor:
+                                    Tag5isPressed ? Colors.white : iconColor,
+                                backgroundColor:
+                                    Tag5isPressed ? iconColor : Colors.white),
+                            child: Text(
+                              'Готовка',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Tag5isPressed = !Tag5isPressed;
+                              });
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 3.0, color: iconColor),
+                                foregroundColor:
+                                    Tag6isPressed ? Colors.white : iconColor,
+                                backgroundColor:
+                                    Tag6isPressed ? iconColor : Colors.white),
+                            child: Text(
+                              'Доставка',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Tag6isPressed = !Tag6isPressed;
+                              });
+                            },
+                          ),
+                        )
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side:
-                                const BorderSide(width: 3.0, color: iconColor),
-                            foregroundColor:
-                                Tag2isPressed ? Colors.white : iconColor,
-                            backgroundColor:
-                                Tag2isPressed ? iconColor : Colors.white),
-                        child: Text(
-                          'Письки',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            Tag2isPressed = !Tag2isPressed;
-                          });
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side:
-                                const BorderSide(width: 3.0, color: iconColor),
-                            foregroundColor:
-                                Tag3isPressed ? Colors.white : iconColor,
-                            backgroundColor:
-                                Tag3isPressed ? iconColor : Colors.white),
-                        child: Text(
-                          'Попки',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            Tag3isPressed = !Tag3isPressed;
-                          });
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side:
-                                const BorderSide(width: 3.0, color: iconColor),
-                            foregroundColor:
-                                Tag4isPressed ? Colors.white : iconColor,
-                            backgroundColor:
-                                Tag4isPressed ? iconColor : Colors.white),
-                        child: Text(
-                          'Яйки',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            Tag4isPressed = !Tag4isPressed;
-                          });
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side:
-                                const BorderSide(width: 3.0, color: iconColor),
-                            foregroundColor:
-                                Tag5isPressed ? Colors.white : iconColor,
-                            backgroundColor:
-                                Tag5isPressed ? iconColor : Colors.white),
-                        child: Text(
-                          'Пуки',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            Tag5isPressed = !Tag5isPressed;
-                          });
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side:
-                                const BorderSide(width: 3.0, color: iconColor),
-                            foregroundColor:
-                                Tag6isPressed ? Colors.white : iconColor,
-                            backgroundColor:
-                                Tag6isPressed ? iconColor : Colors.white),
-                        child: Text(
-                          'Каки',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            Tag6isPressed = !Tag6isPressed;
-                          });
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ))),
+                  )))),
       body: ColorfulSafeArea(
         child: Padding(
-            padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 5),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: ListView.builder(
-                itemCount: 8,
+                itemCount: 4,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => InkWell(
@@ -232,38 +241,34 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding: EdgeInsets.fromLTRB(12, 20, 9, 20),
                                 child: Container(
-                                  height: 115,
-                                  width: 115,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Icon(
-                                    Icons.alarm,
-                                    size: 100,
-                                  ),
-                                ),
+                                    height: 115,
+                                    width: 115,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Image.asset(
+                                      'jobs/${jobs[index]}',
+                                      fit: BoxFit.fill,
+                                    )),
                               ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(0, 20, 9, 20),
                                 child: Container(
                                   height: 115,
                                   width: 155,
-                                  decoration: BoxDecoration(
-                                      // border: Border.all(
-                                      //   color: Colors.white,
-                                      //   width: 4,
-                                      // ),
-                                      ),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     children: [
                                       Flexible(
                                           child: Container(
                                         width: 150,
                                         child: Text(
-                                          'Илья Пруденко',
+                                          '${names[index]}',
                                           style: TextStyle(
-                                            fontSize: 10,
-                                          ),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey[600]),
                                         ),
                                       )),
                                       Flexible(
@@ -272,11 +277,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               EdgeInsets.fromLTRB(0, 8, 0, 0),
                                           width: 150,
                                           child: Text(
-                                            'Сосание писек ',
+                                            '${work[index]} ',
                                             style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.bold,
+                                                overflow:
+                                                    TextOverflow.ellipsis),
                                           ),
                                         ),
                                       ),
@@ -285,7 +291,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                           padding: EdgeInsets.only(top: 8),
                                           width: 150,
                                           child: Text(
-                                            '300' + ' ₽',
+                                            '${(randomPrices[index] ~/ 100) * 100}' +
+                                                ' ₽',
                                             style: TextStyle(
                                               fontSize: 17,
                                               fontWeight: FontWeight.w900,
@@ -307,10 +314,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 size: 15,
                                               ),
                                               Text(
-                                                ' 4.8' +
+                                                ' ${randomRatings[index].toStringAsFixed(2)}' +
                                                     '  |' +
-                                                    '  6240' +
-                                                    ' отзьівов',
+                                                    '  ${randomReviews[index]}' +
+                                                    ' отзывов',
                                                 style: TextStyle(
                                                   fontSize: 10,
                                                 ),
@@ -328,12 +335,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: Container(
                                     height: 40,
                                     width: 40,
-                                    decoration: BoxDecoration(
-                                        // border: Border.all(
-                                        //   color: Colors.white,
-                                        //   width: 4,
-                                        // ),
-                                        ),
+                                    decoration: BoxDecoration(),
                                     child: IconButton(
                                         onPressed: () {
                                           // GoRouter.of(context).pop();
@@ -351,13 +353,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     )))),
-        // Text(
-        //   'Я ничего не сделал, поетому смотрите на текст',
-        //   style: TextStyle(
-        //     fontSize: 20,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
       ),
     );
   }
