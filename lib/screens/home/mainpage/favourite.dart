@@ -70,153 +70,169 @@ class _FavouritePageState extends State<FavouritePage> {
           ],
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(80),
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 13),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 15),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag1isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag1isPressed ? iconColor : Colors.white),
-                            child: Text(
-                              'Все',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+              child: Column(
+                children: [
+                  SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 13),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 15),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 3.0, color: iconColor),
+                                    foregroundColor: Tag1isPressed
+                                        ? Colors.white
+                                        : iconColor,
+                                    backgroundColor: Tag1isPressed
+                                        ? iconColor
+                                        : Colors.white),
+                                child: Text(
+                                  'Все',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Tag1isPressed = !Tag1isPressed;
+                                  });
+                                },
                               ),
                             ),
-                            onPressed: () {
-                              setState(() {
-                                Tag1isPressed = !Tag1isPressed;
-                              });
-                            },
-                          ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 3.0, color: iconColor),
+                                    foregroundColor: Tag2isPressed
+                                        ? Colors.white
+                                        : iconColor,
+                                    backgroundColor: Tag2isPressed
+                                        ? iconColor
+                                        : Colors.white),
+                                child: Text(
+                                  'Клининг',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Tag2isPressed = !Tag2isPressed;
+                                  });
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 3.0, color: iconColor),
+                                    foregroundColor: Tag3isPressed
+                                        ? Colors.white
+                                        : iconColor,
+                                    backgroundColor: Tag3isPressed
+                                        ? iconColor
+                                        : Colors.white),
+                                child: Text(
+                                  'Ремонт',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Tag3isPressed = !Tag3isPressed;
+                                  });
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 3.0, color: iconColor),
+                                    foregroundColor: Tag4isPressed
+                                        ? Colors.white
+                                        : iconColor,
+                                    backgroundColor: Tag4isPressed
+                                        ? iconColor
+                                        : Colors.white),
+                                child: Text(
+                                  'Покраска',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Tag4isPressed = !Tag4isPressed;
+                                  });
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 3.0, color: iconColor),
+                                    foregroundColor: Tag5isPressed
+                                        ? Colors.white
+                                        : iconColor,
+                                    backgroundColor: Tag5isPressed
+                                        ? iconColor
+                                        : Colors.white),
+                                child: Text(
+                                  'Готовка',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Tag5isPressed = !Tag5isPressed;
+                                  });
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 3.0, color: iconColor),
+                                    foregroundColor: Tag6isPressed
+                                        ? Colors.white
+                                        : iconColor,
+                                    backgroundColor: Tag6isPressed
+                                        ? iconColor
+                                        : Colors.white),
+                                child: Text(
+                                  'Доставка',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Tag6isPressed = !Tag6isPressed;
+                                  });
+                                },
+                              ),
+                            )
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag2isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag2isPressed ? iconColor : Colors.white),
-                            child: Text(
-                              'Клининг',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                Tag2isPressed = !Tag2isPressed;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag3isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag3isPressed ? iconColor : Colors.white),
-                            child: Text(
-                              'Ремонт',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                Tag3isPressed = !Tag3isPressed;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag4isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag4isPressed ? iconColor : Colors.white),
-                            child: Text(
-                              'Покраска',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                Tag4isPressed = !Tag4isPressed;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag5isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag5isPressed ? iconColor : Colors.white),
-                            child: Text(
-                              'Готовка',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                Tag5isPressed = !Tag5isPressed;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag6isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag6isPressed ? iconColor : Colors.white),
-                            child: Text(
-                              'Доставка',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                Tag6isPressed = !Tag6isPressed;
-                              });
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  )))),
+                      )),
+                ],
+              ))),
       body: ColorfulSafeArea(
         child: Padding(
             padding: EdgeInsets.only(left: 20, right: 20),
@@ -338,6 +354,251 @@ class _FavouritePageState extends State<FavouritePage> {
                                     decoration: BoxDecoration(),
                                     child: IconButton(
                                         onPressed: () {
+                                          showModalBottomSheet(
+                                              context: context,
+                                              builder: (BuildContext bc) {
+                                                return Container(
+                                                  height: 350,
+                                                  child: Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                0, 30, 0, 20),
+                                                        child: Text(
+                                                          'Удалить из Избранных?',
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25),
+                                                          ),
+                                                          child: Column(
+                                                            children: [
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: EdgeInsets
+                                                                        .fromLTRB(
+                                                                            12,
+                                                                            20,
+                                                                            9,
+                                                                            20),
+                                                                    child: Container(
+                                                                        height: 115,
+                                                                        width: 115,
+                                                                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                                                                        child: Image.asset(
+                                                                          'jobs/${jobs[index]}',
+                                                                          fit: BoxFit
+                                                                              .fill,
+                                                                        )),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets
+                                                                        .fromLTRB(
+                                                                            0,
+                                                                            20,
+                                                                            9,
+                                                                            20),
+                                                                    child:
+                                                                        Container(
+                                                                      height:
+                                                                          115,
+                                                                      width:
+                                                                          155,
+                                                                      decoration:
+                                                                          BoxDecoration(),
+                                                                      child:
+                                                                          Column(
+                                                                        children: [
+                                                                          Flexible(
+                                                                              child: Container(
+                                                                            width:
+                                                                                150,
+                                                                            child:
+                                                                                Text(
+                                                                              '${names[index]}',
+                                                                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey[600]),
+                                                                            ),
+                                                                          )),
+                                                                          Flexible(
+                                                                            child:
+                                                                                Container(
+                                                                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                                                              width: 150,
+                                                                              child: Text(
+                                                                                '${work[index]} ',
+                                                                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Flexible(
+                                                                            child:
+                                                                                Container(
+                                                                              padding: EdgeInsets.only(top: 8),
+                                                                              width: 150,
+                                                                              child: Text(
+                                                                                '${(randomPrices[index] ~/ 100) * 100}' + ' ₽',
+                                                                                style: TextStyle(
+                                                                                  fontSize: 17,
+                                                                                  fontWeight: FontWeight.w900,
+                                                                                  color: iconColor,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Flexible(
+                                                                            child:
+                                                                                Container(
+                                                                              padding: EdgeInsets.fromLTRB(2, 15, 0, 0),
+                                                                              width: 150,
+                                                                              child: Row(
+                                                                                children: [
+                                                                                  Icon(
+                                                                                    Icons.star,
+                                                                                    color: Colors.orangeAccent,
+                                                                                    size: 15,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    ' ${randomRatings[index].toStringAsFixed(2)}' + '  |' + '  ${randomReviews[index]}' + ' отзывов',
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 10,
+                                                                                    ),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                      padding: EdgeInsets
+                                                                          .fromLTRB(
+                                                                              20,
+                                                                              20,
+                                                                              9,
+                                                                              0),
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            40,
+                                                                        width:
+                                                                            40,
+                                                                        decoration:
+                                                                            BoxDecoration(),
+                                                                        child: IconButton(
+                                                                            onPressed: () {
+                                                                              // GoRouter.of(context).pop();
+                                                                            },
+                                                                            icon: Transform.flip(
+                                                                                flipX: true,
+                                                                                child: SvgPicture.asset(
+                                                                                  'icons/Закладка 3.svg',
+                                                                                  color: iconColor,
+                                                                                  height: 25,
+                                                                                ))),
+                                                                      ))
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          )),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 20),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                  fixedSize:
+                                                                      Size(180,
+                                                                          60),
+                                                                  foregroundColor:
+                                                                      Tag1isPressed
+                                                                          ? Colors
+                                                                              .white
+                                                                          : iconColor,
+                                                                  backgroundColor: Tag1isPressed
+                                                                      ? iconColor
+                                                                      : Color.fromARGB(
+                                                                          255,
+                                                                          240,
+                                                                          232,
+                                                                          252)),
+                                                              child: Text(
+                                                                'Отменить',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 19,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                              onPressed: () {},
+                                                            ),
+                                                            SizedBox(width: 10),
+                                                            ElevatedButton(
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
+                                                                fixedSize: Size(
+                                                                    180, 60),
+                                                                foregroundColor:
+                                                                    Tag1isPressed
+                                                                        ? iconColor
+                                                                        : Color.fromARGB(
+                                                                            255,
+                                                                            240,
+                                                                            232,
+                                                                            252),
+                                                                backgroundColor:
+                                                                    Tag1isPressed
+                                                                        ? Colors
+                                                                            .white
+                                                                        : iconColor,
+                                                              ),
+                                                              child: Text(
+                                                                'Да',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 19,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                              onPressed: () {},
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              });
                                           // GoRouter.of(context).pop();
                                         },
                                         icon: Transform.flip(
