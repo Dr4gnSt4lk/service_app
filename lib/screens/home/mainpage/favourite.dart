@@ -307,413 +307,174 @@ class _FavouritePageState extends State<FavouritePage> {
     return Padding(
         padding: EdgeInsets.only(left: 20, right: 20),
         child: ListView.builder(
-            itemCount: 4,
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemBuilder: (context, index) => InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(12, 20, 9, 20),
-                            child: Container(
-                                height: 115,
-                                width: 115,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Image.asset(
-                                  'jobs/${jobs[index]}',
-                                  fit: BoxFit.fill,
-                                )),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 20, 9, 20),
-                            child: Container(
-                              height: 115,
-                              width: 155,
-                              decoration: BoxDecoration(),
-                              child: Column(
-                                children: [
-                                  Flexible(
-                                      child: Container(
-                                    width: 150,
-                                    child: Text(
-                                      '${names[index]}',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey[600]),
-                                    ),
-                                  )),
-                                  Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                      width: 150,
-                                      child: Text(
-                                        '${work[index]} ',
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
-                                            overflow: TextOverflow.ellipsis),
-                                      ),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(top: 8),
-                                      width: 150,
-                                      child: Text(
-                                        '${(randomPrices[index] ~/ 100) * 100}' +
-                                            ' ₽',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w900,
-                                          color: iconColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.fromLTRB(2, 15, 0, 0),
-                                      width: 150,
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.orangeAccent,
-                                            size: 15,
-                                          ),
-                                          Text(
-                                            ' ${randomRatings[index].toStringAsFixed(2)}' +
-                                                '  |' +
-                                                '  ${randomReviews[index]}' +
-                                                ' отзывов',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(20, 20, 9, 0),
-                              child: Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(),
-                                child: IconButton(
-                                    onPressed: () {
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (BuildContext bc) {
-                                            return Container(
-                                              height: 350,
-                                              child: Column(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 30, 0, 20),
-                                                    child: Text(
-                                                      'Удалить из Избранных?',
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          overflow: TextOverflow
-                                                              .ellipsis),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                      ),
-                                                      child: Column(
-                                                        children: [
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            12,
-                                                                            20,
-                                                                            9,
-                                                                            20),
-                                                                child:
-                                                                    Container(
-                                                                        height:
-                                                                            115,
-                                                                        width:
-                                                                            115,
-                                                                        decoration: BoxDecoration(
-                                                                            color: Colors
-                                                                                .white,
-                                                                            borderRadius: BorderRadius.circular(
-                                                                                20)),
-                                                                        child: Image
-                                                                            .asset(
-                                                                          'jobs/${jobs[index]}',
-                                                                          fit: BoxFit
-                                                                              .fill,
-                                                                        )),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            0,
-                                                                            20,
-                                                                            9,
-                                                                            20),
-                                                                child:
-                                                                    Container(
-                                                                  height: 115,
-                                                                  width: 155,
-                                                                  decoration:
-                                                                      BoxDecoration(),
-                                                                  child: Column(
-                                                                    children: [
-                                                                      Flexible(
-                                                                          child:
-                                                                              Container(
-                                                                        width:
-                                                                            150,
-                                                                        child:
-                                                                            Text(
-                                                                          '${names[index]}',
-                                                                          style: TextStyle(
-                                                                              fontSize: 10,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              color: Colors.grey[600]),
-                                                                        ),
-                                                                      )),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Container(
-                                                                          padding: EdgeInsets.fromLTRB(
-                                                                              0,
-                                                                              8,
-                                                                              0,
-                                                                              0),
-                                                                          width:
-                                                                              150,
-                                                                          child:
-                                                                              Text(
-                                                                            '${work[index]} ',
-                                                                            style: TextStyle(
-                                                                                fontSize: 17,
-                                                                                fontWeight: FontWeight.bold,
-                                                                                overflow: TextOverflow.ellipsis),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Container(
-                                                                          padding:
-                                                                              EdgeInsets.only(top: 8),
-                                                                          width:
-                                                                              150,
-                                                                          child:
-                                                                              Text(
-                                                                            '${(randomPrices[index] ~/ 100) * 100}' +
-                                                                                ' ₽',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: 17,
-                                                                              fontWeight: FontWeight.w900,
-                                                                              color: iconColor,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Container(
-                                                                          padding: EdgeInsets.fromLTRB(
-                                                                              2,
-                                                                              15,
-                                                                              0,
-                                                                              0),
-                                                                          width:
-                                                                              150,
-                                                                          child:
-                                                                              Row(
-                                                                            children: [
-                                                                              Icon(
-                                                                                Icons.star,
-                                                                                color: Colors.orangeAccent,
-                                                                                size: 15,
-                                                                              ),
-                                                                              Text(
-                                                                                ' ${randomRatings[index].toStringAsFixed(2)}' + '  |' + '  ${randomReviews[index]}' + ' отзывов',
-                                                                                style: TextStyle(
-                                                                                  fontSize: 10,
-                                                                                ),
-                                                                              )
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                  padding: EdgeInsets
-                                                                      .fromLTRB(
-                                                                          20,
-                                                                          20,
-                                                                          9,
-                                                                          0),
-                                                                  child:
-                                                                      Container(
-                                                                    height: 40,
-                                                                    width: 40,
-                                                                    decoration:
-                                                                        BoxDecoration(),
-                                                                    child: IconButton(
-                                                                        onPressed: () {
-                                                                          // GoRouter.of(context).pop();
-                                                                        },
-                                                                        icon: Transform.flip(
-                                                                            flipX: true,
-                                                                            child: SvgPicture.asset(
-                                                                              'icons/Закладка 3.svg',
-                                                                              color: iconColor,
-                                                                              height: 25,
-                                                                            ))),
-                                                                  ))
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      )),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 20),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              fixedSize:
-                                                                  Size(180, 60),
-                                                              foregroundColor:
-                                                                  Tag1isPressed
-                                                                      ? Colors
-                                                                          .white
-                                                                      : iconColor,
-                                                              backgroundColor:
-                                                                  Tag1isPressed
-                                                                      ? iconColor
-                                                                      : Color.fromARGB(
-                                                                          255,
-                                                                          240,
-                                                                          232,
-                                                                          252)),
-                                                          child: Text(
-                                                            'Отменить',
-                                                            style: TextStyle(
-                                                              fontSize: 19,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          onPressed: () {},
-                                                        ),
-                                                        SizedBox(width: 10),
-                                                        ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            fixedSize:
-                                                                Size(180, 60),
-                                                            foregroundColor:
-                                                                Tag1isPressed
-                                                                    ? iconColor
-                                                                    : Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            240,
-                                                                            232,
-                                                                            252),
-                                                            backgroundColor:
-                                                                Tag1isPressed
-                                                                    ? Colors
-                                                                        .white
-                                                                    : iconColor,
-                                                          ),
-                                                          child: Text(
-                                                            'Да',
-                                                            style: TextStyle(
-                                                              fontSize: 19,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          onPressed: () {},
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          });
-                                      // GoRouter.of(context).pop();
-                                    },
-                                    icon: Transform.flip(
-                                        flipX: true,
-                                        child: SvgPicture.asset(
-                                          'icons/Закладка 3.svg',
-                                          color: iconColor,
-                                          height: 25,
-                                        ))),
-                              ))
-                        ],
-                      )
-                    ],
-                  ),
-                ))));
+          itemCount: 5,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return buildCard(index);
+          },
+        ));
   }
 
   Widget Sellers() {
     return Padding(
         padding: EdgeInsets.only(left: 20, right: 20),
         child: ListView.builder(
-            itemCount: 4,
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemBuilder: (context, index) => InkWell(
-                onTap: () {},
-                child: Container(
+          itemCount: 4,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return buildCard(index);
+          },
+        ));
+  }
+
+  Widget buildCard(int index) {
+    return InkWell(
+        onTap: () {},
+        child: Container(
+          margin: EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(12, 20, 9, 20),
+                    child: Container(
+                        height: 115,
+                        width: 115,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Image.asset(
+                          'jobs/${jobs[index]}',
+                          fit: BoxFit.fill,
+                        )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 20, 9, 20),
+                    child: Container(
+                      height: 115,
+                      width: 155,
+                      decoration: BoxDecoration(),
+                      child: Column(
+                        children: [
+                          Flexible(
+                              child: Container(
+                            width: 150,
+                            child: Text(
+                              '${names[index]}',
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600]),
+                            ),
+                          )),
+                          Flexible(
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                              width: 150,
+                              child: Text(
+                                '${work[index]} ',
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              padding: EdgeInsets.only(top: 8),
+                              width: 150,
+                              child: Text(
+                                '${(randomPrices[index] ~/ 100) * 100}' + ' ₽',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w900,
+                                  color: iconColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(2, 15, 0, 0),
+                              width: 150,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.orangeAccent,
+                                    size: 15,
+                                  ),
+                                  Text(
+                                    ' ${randomRatings[index].toStringAsFixed(2)}' +
+                                        '  |' +
+                                        '  ${randomReviews[index]}' +
+                                        ' отзывов',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(20, 20, 9, 0),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(),
+                        child: IconButton(
+                            onPressed: () {
+                              deliteFavorite(index);
+                            },
+                            icon: Transform.flip(
+                                flipX: true,
+                                child: SvgPicture.asset(
+                                  'icons/Закладка 3.svg',
+                                  color: iconColor,
+                                  height: 25,
+                                ))),
+                      ))
+                ],
+              )
+            ],
+          ),
+        ));
+  }
+
+  void deliteFavorite(int index) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            height: 350,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                  child: Text(
+                    'Удалить из Избранных?',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                ),
+                Container(
                   margin: EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -820,276 +581,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                 width: 40,
                                 decoration: BoxDecoration(),
                                 child: IconButton(
-                                    onPressed: () {
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (BuildContext bc) {
-                                            return Container(
-                                              height: 350,
-                                              child: Column(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 30, 0, 20),
-                                                    child: Text(
-                                                      'Удалить из Избранных?',
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          overflow: TextOverflow
-                                                              .ellipsis),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                      ),
-                                                      child: Column(
-                                                        children: [
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            12,
-                                                                            20,
-                                                                            9,
-                                                                            20),
-                                                                child:
-                                                                    Container(
-                                                                        height:
-                                                                            115,
-                                                                        width:
-                                                                            115,
-                                                                        decoration: BoxDecoration(
-                                                                            color: Colors
-                                                                                .white,
-                                                                            borderRadius: BorderRadius.circular(
-                                                                                20)),
-                                                                        child: Image
-                                                                            .asset(
-                                                                          'jobs/${jobs[index]}',
-                                                                          fit: BoxFit
-                                                                              .fill,
-                                                                        )),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            0,
-                                                                            20,
-                                                                            9,
-                                                                            20),
-                                                                child:
-                                                                    Container(
-                                                                  height: 115,
-                                                                  width: 155,
-                                                                  decoration:
-                                                                      BoxDecoration(),
-                                                                  child: Column(
-                                                                    children: [
-                                                                      Flexible(
-                                                                          child:
-                                                                              Container(
-                                                                        width:
-                                                                            150,
-                                                                        child:
-                                                                            Text(
-                                                                          '${names[index]}',
-                                                                          style: TextStyle(
-                                                                              fontSize: 10,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              color: Colors.grey[600]),
-                                                                        ),
-                                                                      )),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Container(
-                                                                          padding: EdgeInsets.fromLTRB(
-                                                                              0,
-                                                                              8,
-                                                                              0,
-                                                                              0),
-                                                                          width:
-                                                                              150,
-                                                                          child:
-                                                                              Text(
-                                                                            '${work[index]} ',
-                                                                            style: TextStyle(
-                                                                                fontSize: 17,
-                                                                                fontWeight: FontWeight.bold,
-                                                                                overflow: TextOverflow.ellipsis),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Container(
-                                                                          padding:
-                                                                              EdgeInsets.only(top: 8),
-                                                                          width:
-                                                                              150,
-                                                                          child:
-                                                                              Text(
-                                                                            '${(randomPrices[index] ~/ 100) * 100}' +
-                                                                                ' ₽',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: 17,
-                                                                              fontWeight: FontWeight.w900,
-                                                                              color: iconColor,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Container(
-                                                                          padding: EdgeInsets.fromLTRB(
-                                                                              2,
-                                                                              15,
-                                                                              0,
-                                                                              0),
-                                                                          width:
-                                                                              150,
-                                                                          child:
-                                                                              Row(
-                                                                            children: [
-                                                                              Icon(
-                                                                                Icons.star,
-                                                                                color: Colors.orangeAccent,
-                                                                                size: 15,
-                                                                              ),
-                                                                              Text(
-                                                                                ' ${randomRatings[index].toStringAsFixed(2)}' + '  |' + '  ${randomReviews[index]}' + ' отзывов',
-                                                                                style: TextStyle(
-                                                                                  fontSize: 10,
-                                                                                ),
-                                                                              )
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                  padding: EdgeInsets
-                                                                      .fromLTRB(
-                                                                          20,
-                                                                          20,
-                                                                          9,
-                                                                          0),
-                                                                  child:
-                                                                      Container(
-                                                                    height: 40,
-                                                                    width: 40,
-                                                                    decoration:
-                                                                        BoxDecoration(),
-                                                                    child: IconButton(
-                                                                        onPressed: () {
-                                                                          // GoRouter.of(context).pop();
-                                                                        },
-                                                                        icon: Transform.flip(
-                                                                            flipX: true,
-                                                                            child: SvgPicture.asset(
-                                                                              'icons/Закладка 3.svg',
-                                                                              color: iconColor,
-                                                                              height: 25,
-                                                                            ))),
-                                                                  ))
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      )),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 20),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              fixedSize:
-                                                                  Size(180, 60),
-                                                              foregroundColor:
-                                                                  Tag1isPressed
-                                                                      ? Colors
-                                                                          .white
-                                                                      : iconColor,
-                                                              backgroundColor:
-                                                                  Tag1isPressed
-                                                                      ? iconColor
-                                                                      : Color.fromARGB(
-                                                                          255,
-                                                                          240,
-                                                                          232,
-                                                                          252)),
-                                                          child: Text(
-                                                            'Отменить',
-                                                            style: TextStyle(
-                                                              fontSize: 19,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          onPressed: () {},
-                                                        ),
-                                                        SizedBox(width: 10),
-                                                        ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            fixedSize:
-                                                                Size(180, 60),
-                                                            foregroundColor:
-                                                                Tag1isPressed
-                                                                    ? iconColor
-                                                                    : Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            240,
-                                                                            232,
-                                                                            252),
-                                                            backgroundColor:
-                                                                Tag1isPressed
-                                                                    ? Colors
-                                                                        .white
-                                                                    : iconColor,
-                                                          ),
-                                                          child: Text(
-                                                            'Да',
-                                                            style: TextStyle(
-                                                              fontSize: 19,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          onPressed: () {},
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          });
-                                      // GoRouter.of(context).pop();
-                                    },
+                                    onPressed: () {},
                                     icon: Transform.flip(
                                         flipX: true,
                                         child: SvgPicture.asset(
@@ -1102,6 +594,55 @@ class _FavouritePageState extends State<FavouritePage> {
                       )
                     ],
                   ),
-                ))));
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(180, 60),
+                          foregroundColor: Tag1isPressed
+                              ? iconColor
+                              : Color.fromARGB(255, 240, 232, 252),
+                          backgroundColor:
+                              Tag1isPressed ? Colors.white : iconColor,
+                        ),
+                        child: Text(
+                          'Отменить',
+                          style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {},
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(180, 60),
+                            foregroundColor:
+                                Tag1isPressed ? Colors.white : iconColor,
+                            backgroundColor: Tag1isPressed
+                                ? iconColor
+                                : Color.fromARGB(255, 240, 232, 252)),
+                        child: Text(
+                          'Да',
+                          style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+    // GoRouter.of(context).pop();
   }
 }
