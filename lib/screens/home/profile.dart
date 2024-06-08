@@ -1,3 +1,5 @@
+import 'dart:math';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -407,7 +409,9 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 0),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  logOut(context);
+                },
                 child: Container(
                   height: 50,
                   // decoration: BoxDecoration(
@@ -453,5 +457,79 @@ class ProfilePage extends StatelessWidget {
             )
           ],
         )));
+  }
+
+  void logOut(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            height: 250,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                  child: Text(
+                    'Выход',
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Вы уверены, что хотите выйти?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(180, 60),
+                          foregroundColor: iconColor,
+                          backgroundColor: Color.fromARGB(255, 240, 232, 252),
+                        ),
+                        child: Text(
+                          'Отменить',
+                          style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {},
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(180, 60),
+                            foregroundColor: Color.fromARGB(255, 240, 232, 252),
+                            backgroundColor: iconColor),
+                        child: Text(
+                          'Да',
+                          style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

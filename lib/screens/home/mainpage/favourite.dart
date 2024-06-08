@@ -622,8 +622,9 @@ class _FavouritePageState extends State<FavouritePage> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             fixedSize: Size(180, 60),
-                            foregroundColor:
-                                Tag1isPressed ? Colors.white : iconColor,
+                            foregroundColor: Tag1isPressed
+                                ? Color.fromARGB(255, 240, 232, 252)
+                                : iconColor,
                             backgroundColor: Tag1isPressed
                                 ? iconColor
                                 : Color.fromARGB(255, 240, 232, 252)),
