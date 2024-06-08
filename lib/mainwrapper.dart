@@ -69,7 +69,7 @@ class _MainWrapperState extends State<MainWrapper> {
                   ),
                   activeIcon: SvgPicture.asset('icons/Документ.svg',
                       height: 25, color: iconColor),
-                  label: 'Бронь'),
+                  label: 'Записи'),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     'icons/Календарь 2.svg',

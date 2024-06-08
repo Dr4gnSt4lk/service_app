@@ -4,13 +4,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
 
+bool darkTheme = false;
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
           scrolledUnderElevation: 0,
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -53,12 +55,61 @@ class ProfilePage extends StatelessWidget {
             child: ListView(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 15),
-              child: CircleAvatar(
-                radius: 60,
-                backgroundColor: Colors.black,
-                backgroundImage: Image.asset('icons/face1.png').image,
-              ),
+              padding: EdgeInsets.fromLTRB(140, 0, 140, 0),
+
+              // decoration: BoxDecoration(
+              //     border: Border.all(width: 1, color: Colors.black)),
+              child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 15),
+                    child: CircleAvatar(
+                      radius: 60,
+                      child: Stack(
+                        children: [
+                          CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.grey.shade200,
+                            child: CircleAvatar(
+                              radius: 70,
+                              backgroundImage: AssetImage('icons/face.png'),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 1,
+                            right: 1,
+                            child: Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Icon(Icons.add_a_photo,
+                                    color: Colors.black),
+                              ),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 3,
+                                    color: Colors.white,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      50,
+                                    ),
+                                  ),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: Offset(2, 4),
+                                      color: Colors.black.withOpacity(
+                                        0.3,
+                                      ),
+                                      blurRadius: 3,
+                                    ),
+                                  ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )),
             ),
             Container(
                 margin: EdgeInsets.only(top: 10),
@@ -114,9 +165,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset('icons/Стрелка_вправо.svg'),
+                          height: 20,
+                          width: 20,
+                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
                         ),
                       )
                     ],
@@ -127,9 +178,7 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 0),
               child: InkWell(
-                onTap: () {
-                  context.goNamed('Notification');
-                },
+                onTap: () {},
                 child: Container(
                   height: 50,
                   // decoration: BoxDecoration(
@@ -152,7 +201,7 @@ class ProfilePage extends StatelessWidget {
                         flex: 4,
                         child: Container(
                             child: Text(
-                          'Уведомления',
+                          'Настройки Уведомлений',
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -162,9 +211,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset('icons/Стрелка_вправо.svg'),
+                          height: 20,
+                          width: 20,
+                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
                         ),
                       )
                     ],
@@ -208,9 +257,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset('icons/Стрелка_вправо.svg'),
+                          height: 20,
+                          width: 20,
+                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
                         ),
                       )
                     ],
@@ -252,13 +301,12 @@ class ProfilePage extends StatelessWidget {
                         )),
                       ),
                       Expanded(
-                        flex: 1,
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset('icons/Стрелка_вправо.svg'),
-                        ),
-                      )
+                          flex: 1,
+                          child: Container(
+                            margin: EdgeInsets.only(right: 20),
+                            child:
+                                Switch(value: darkTheme, onChanged: (value) {}),
+                          ))
                     ],
                   ),
                 ),
@@ -300,9 +348,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset('icons/Стрелка_вправо.svg'),
+                          height: 20,
+                          width: 20,
+                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
                         ),
                       )
                     ],
@@ -346,9 +394,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset('icons/Стрелка_вправо.svg'),
+                          height: 20,
+                          width: 20,
+                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
                         ),
                       )
                     ],
@@ -385,6 +433,7 @@ class ProfilePage extends StatelessWidget {
                             child: Text(
                           'Выйти',
                           style: TextStyle(
+                              color: Colors.red,
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               overflow: TextOverflow.ellipsis),

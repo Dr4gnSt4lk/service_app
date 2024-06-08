@@ -21,7 +21,7 @@ class _BookingsPageState extends State<BookingsPage> {
       appBar: AppBar(
           scrolledUnderElevation: 0,
           title: Text(
-            'Мои Брони',
+            'Мои Записи',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
