@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
+import 'package:service_app/screens/home/profile/edit_profile.dart';
 
 bool darkTheme = false;
 
@@ -136,7 +137,9 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 50),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.goNamed('EditProfile');
+                },
                 child: Container(
                   height: 50,
                   // decoration: BoxDecoration(
@@ -146,9 +149,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 30,
-                          width: 30,
+                          margin: EdgeInsets.only(left: 22),
+                          height: 37,
+                          width: 37,
                           child: SvgPicture.asset('icons/Профиль.svg'),
                         ),
                       ),
@@ -190,9 +193,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 30,
-                          width: 30,
+                          margin: EdgeInsets.only(left: 22),
+                          height: 35,
+                          width: 35,
                           child: SvgPicture.asset(
                             'icons/Колокол.svg',
                           ),
@@ -237,10 +240,10 @@ class ProfilePage extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           margin: EdgeInsets.only(left: 20),
-                          height: 30,
-                          width: 30,
+                          height: 36,
+                          width: 36,
                           child: SvgPicture.asset(
-                            'icons/Колокол.svg',
+                            'icons/Безопасность.svg',
                           ),
                         ),
                       ),
@@ -283,8 +286,8 @@ class ProfilePage extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           margin: EdgeInsets.only(left: 20),
-                          height: 25,
-                          width: 25,
+                          height: 35,
+                          width: 35,
                           child: SvgPicture.asset(
                             'icons/Глаз_вкл.svg',
                           ),
@@ -327,9 +330,9 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 30,
-                          width: 30,
+                          margin: EdgeInsets.only(left: 22),
+                          height: 36,
+                          width: 36,
                           child: SvgPicture.asset(
                             'icons/Замок.svg',
                           ),
@@ -373,11 +376,11 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 30,
-                          width: 30,
+                          margin: EdgeInsets.only(left: 21),
+                          height: 36,
+                          width: 36,
                           child: SvgPicture.asset(
-                            'icons/Замок.svg',
+                            'icons/Центр_Помощи.svg',
                           ),
                         ),
                       ),
@@ -421,11 +424,11 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 30,
-                          width: 30,
+                          margin: EdgeInsets.only(left: 21),
+                          height: 35,
+                          width: 35,
                           child: SvgPicture.asset(
-                            'icons/Замок.svg',
+                            'icons/Выйти.svg',
                             color: Colors.red,
                           ),
                         ),

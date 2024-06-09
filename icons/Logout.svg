@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.04 21.11">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M14.26,14.93c0,1.89-1.53,3.41-3.41,3.41H6.63c-1.89,0-3.41-1.53-3.41-3.41V7.78c0-1.89,1.53-3.41,3.41-3.41h4.21c1.89,0,3.41,1.53,3.41,3.41"/>
+  <polyline class="cls-1" points="16.94 13.9 19.23 11.51 16.94 9.21 19.23 11.51 9.21 11.51"/>
+</svg>

@@ -11,7 +11,8 @@ import 'package:service_app/screens/home/inbox.dart';
 import 'package:service_app/screens/home/mainpage/notification.dart';
 import 'package:service_app/screens/home/mainpage/services.dart';
 import 'package:service_app/screens/home/mainpage/special.dart';
-import 'package:service_app/screens/home/profile.dart';
+import 'package:service_app/screens/home/profile/profile.dart';
+import 'package:service_app/screens/home/profile/edit_profile.dart';
 import 'package:service_app/screens/login/fill.dart';
 import 'package:service_app/screens/login/login.dart';
 import 'package:service_app/screens/login/register.dart';
@@ -201,14 +202,24 @@ class AppNavigation {
               ]),
               StatefulShellBranch(navigatorKey: _rootNavigatorProfile, routes: [
                 GoRoute(
-                  path: '/profile',
-                  name: 'Profile',
-                  builder: (context, state) {
-                    return ProfilePage(
-                      key: state.pageKey,
-                    );
-                  },
-                )
+                    path: '/profile',
+                    name: 'Profile',
+                    builder: (context, state) {
+                      return ProfilePage(
+                        key: state.pageKey,
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'edit_profile',
+                        name: 'EditProfile',
+                        builder: (context, state) {
+                          return EditProfilePage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                    ])
               ]),
             ])
       ]);

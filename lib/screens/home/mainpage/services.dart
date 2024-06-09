@@ -41,9 +41,7 @@ class ServicesPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.fromLTRB(0, 3, 10, 0),
                 child: IconButton(
-                    onPressed: () {
-                      GoRouter.of(context).pop();
-                    },
+                    onPressed: () {},
                     icon: Transform.flip(
                         child: SvgPicture.asset(
                       'icons/3 точки.svg',

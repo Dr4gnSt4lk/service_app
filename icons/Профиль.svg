@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.55 29.62" fill="none" stroke="#1d1d1b" stroke-linejoin="round" stroke-width="3" xmlns:v="https://vecta.io/nano"><ellipse cx="13.02" cy="7.52" rx="5.81" ry="5.73"/><rect x="3.19" y="19.21" width="19.81" height="8.19" rx="3.26"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_3" data-name="Слой 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.62 23.23">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <ellipse class="cls-1" cx="8.89" cy="8.17" rx="3.62" ry="3.58"/>
+  <rect class="cls-1" x="2.76" y="15.25" width="12.36" height="5.11" rx="2.55" ry="2.55"/>
+</svg>
