@@ -106,7 +106,13 @@ class EditNotificationPage extends StatelessWidget {
                           margin: EdgeInsets.only(right: 20),
                           child: Transform.scale(
                             scale: 0.9,
-                            child: Switch(value: Sound, onChanged: (value) {}),
+                            child: Switch(
+                                value: Sound,
+                                onChanged: (value) {
+                                  setState(() {
+                                    Sound = value;
+                                  });
+                                }),
                           )))
                 ],
               ),

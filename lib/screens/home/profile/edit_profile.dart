@@ -38,21 +38,6 @@ class EditProfilePage extends StatelessWidget {
               ),
             ),
           ),
-          actions: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 3, 10, 0),
-              child: IconButton(
-                  onPressed: () {
-                    // GoRouter.of(context).pop();
-                  },
-                  icon: Transform.flip(
-                      flipX: true,
-                      child: SvgPicture.asset(
-                        'icons/3 точки.svg',
-                        height: 25,
-                      ))),
-            )
-          ],
         ),
         body: ColorfulSafeArea(
             child: Column(
