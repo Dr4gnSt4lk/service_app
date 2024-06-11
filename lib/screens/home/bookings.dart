@@ -39,7 +39,7 @@ class _BookingsPageState extends State<BookingsPage> {
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
-                                color: upcoming ? iconColor : Colors.grey,
+                                color: upcoming ? SoftColorPurple : Colors.grey,
                                 width: upcoming ? 3 : 1))),
                     child: Padding(
                         padding: EdgeInsets.only(bottom: 5),
@@ -49,7 +49,7 @@ class _BookingsPageState extends State<BookingsPage> {
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: upcoming ? iconColor : Colors.grey),
+                              color: upcoming ? SoftColorPurple : Colors.grey),
                         )),
                   ),
                   onTap: () {
@@ -67,7 +67,8 @@ class _BookingsPageState extends State<BookingsPage> {
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
-                                color: !upcoming ? iconColor : Colors.grey,
+                                color:
+                                    !upcoming ? SoftColorPurple : Colors.grey,
                                 width: !upcoming ? 4 : 1))),
                     child: Padding(
                         padding: EdgeInsets.only(bottom: 5),
@@ -77,7 +78,7 @@ class _BookingsPageState extends State<BookingsPage> {
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: !upcoming ? iconColor : Colors.grey),
+                              color: !upcoming ? SoftColorPurple : Colors.grey),
                         )),
                   ),
                   onTap: () {
@@ -158,7 +159,7 @@ class _BookingsPageState extends State<BookingsPage> {
                           width: 100,
                           height: 30,
                           decoration: BoxDecoration(
-                            color: iconColor,
+                            color: SoftColorPurple,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Align(
@@ -240,7 +241,7 @@ class _BookingsPageState extends State<BookingsPage> {
                           width: 100,
                           height: 30,
                           decoration: BoxDecoration(
-                            color: iconColor,
+                            color: SoftColorPurple,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Align(

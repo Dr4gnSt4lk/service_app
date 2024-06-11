@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {},
                         icon: SvgPicture.asset(
                           'icons/Две полоски.svg',
-                          color: iconColor,
+                          color: SoftColorPurple,
                           height: 18,
                         ))
                   ]),
@@ -135,7 +135,8 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Подробнее',
                         style: TextStyle(
-                            color: iconColor, fontWeight: FontWeight.bold),
+                            color: SoftColorPurple,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         context.goNamed('Special');
@@ -165,7 +166,8 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Подробнее',
                         style: TextStyle(
-                            color: iconColor, fontWeight: FontWeight.bold),
+                            color: SoftColorPurple,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         context.goNamed('Services');
@@ -194,7 +196,8 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Подробнее',
                         style: TextStyle(
-                            color: iconColor, fontWeight: FontWeight.bold),
+                            color: SoftColorPurple,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         context.goNamed('Services');
@@ -212,11 +215,13 @@ class _HomePageState extends State<HomePage> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag1isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag1isPressed ? iconColor : Colors.white),
+                                    width: 3.0, color: SoftColorPurple),
+                                foregroundColor: Tag1isPressed
+                                    ? Colors.white
+                                    : SoftColorPurple,
+                                backgroundColor: Tag1isPressed
+                                    ? SoftColorPurple
+                                    : Colors.white),
                             child: Text(
                               'Все',
                               style: TextStyle(
@@ -235,11 +240,13 @@ class _HomePageState extends State<HomePage> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag2isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag2isPressed ? iconColor : Colors.white),
+                                    width: 3.0, color: SoftColorPurple),
+                                foregroundColor: Tag2isPressed
+                                    ? Colors.white
+                                    : SoftColorPurple,
+                                backgroundColor: Tag2isPressed
+                                    ? SoftColorPurple
+                                    : Colors.white),
                             child: Text(
                               'Клининг',
                               style: TextStyle(
@@ -258,11 +265,13 @@ class _HomePageState extends State<HomePage> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag3isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag3isPressed ? iconColor : Colors.white),
+                                    width: 3.0, color: SoftColorPurple),
+                                foregroundColor: Tag3isPressed
+                                    ? Colors.white
+                                    : SoftColorPurple,
+                                backgroundColor: Tag3isPressed
+                                    ? SoftColorPurple
+                                    : Colors.white),
                             child: Text(
                               'Ремонт',
                               style: TextStyle(
@@ -281,11 +290,13 @@ class _HomePageState extends State<HomePage> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag4isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag4isPressed ? iconColor : Colors.white),
+                                    width: 3.0, color: SoftColorPurple),
+                                foregroundColor: Tag4isPressed
+                                    ? Colors.white
+                                    : SoftColorPurple,
+                                backgroundColor: Tag4isPressed
+                                    ? SoftColorPurple
+                                    : Colors.white),
                             child: Text(
                               'Покраска',
                               style: TextStyle(
@@ -304,11 +315,13 @@ class _HomePageState extends State<HomePage> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag5isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag5isPressed ? iconColor : Colors.white),
+                                    width: 3.0, color: SoftColorPurple),
+                                foregroundColor: Tag5isPressed
+                                    ? Colors.white
+                                    : SoftColorPurple,
+                                backgroundColor: Tag5isPressed
+                                    ? SoftColorPurple
+                                    : Colors.white),
                             child: Text(
                               'Готовка',
                               style: TextStyle(
@@ -327,11 +340,13 @@ class _HomePageState extends State<HomePage> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(
-                                    width: 3.0, color: iconColor),
-                                foregroundColor:
-                                    Tag6isPressed ? Colors.white : iconColor,
-                                backgroundColor:
-                                    Tag6isPressed ? iconColor : Colors.white),
+                                    width: 3.0, color: SoftColorPurple),
+                                foregroundColor: Tag6isPressed
+                                    ? Colors.white
+                                    : SoftColorPurple,
+                                backgroundColor: Tag6isPressed
+                                    ? SoftColorPurple
+                                    : Colors.white),
                             child: Text(
                               'Доставка',
                               style: TextStyle(
@@ -429,7 +444,7 @@ class _HomePageState extends State<HomePage> {
                                                 style: TextStyle(
                                                   fontSize: 17,
                                                   fontWeight: FontWeight.w900,
-                                                  color: iconColor,
+                                                  color: SoftColorPurple,
                                                 ),
                                               ),
                                             ),
@@ -481,7 +496,7 @@ class _HomePageState extends State<HomePage> {
                                                       ? 'icons/Закладка 1.svg'
                                                       : 'icons/Закладка 3.svg',
                                                   height: index > 4 ? 21 : 25,
-                                                  color: iconColor,
+                                                  color: SoftColorPurple,
                                                 ))),
                                       ))
                                 ],

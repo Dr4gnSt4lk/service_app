@@ -11,9 +11,13 @@ import 'package:service_app/screens/home/inbox.dart';
 import 'package:service_app/screens/home/mainpage/notification.dart';
 import 'package:service_app/screens/home/mainpage/services.dart';
 import 'package:service_app/screens/home/mainpage/special.dart';
+import 'package:service_app/screens/home/profile/help_center.dart';
 import 'package:service_app/screens/home/profile/profile.dart';
 import 'package:service_app/screens/home/profile/edit_profile.dart';
 import 'package:service_app/screens/home/profile/edit_notification.dart';
+import 'package:service_app/screens/home/profile/security.dart';
+import 'package:service_app/screens/home/profile/privacy.dart';
+import 'package:service_app/screens/home/profile/help_center.dart';
 import 'package:service_app/screens/login/fill.dart';
 import 'package:service_app/screens/login/login.dart';
 import 'package:service_app/screens/login/register.dart';
@@ -225,6 +229,33 @@ class AppNavigation {
                         name: 'EditNotification',
                         builder: (context, state) {
                           return EditNotificationPage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'security',
+                        name: 'Security',
+                        builder: (context, state) {
+                          return SecurityPage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'privacy',
+                        name: 'Privacy',
+                        builder: (context, state) {
+                          return PrivacyPage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'help_center',
+                        name: 'HelpCenter',
+                        builder: (context, state) {
+                          return HelpCenterPage(
                             key: state.pageKey,
                           );
                         },

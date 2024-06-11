@@ -212,7 +212,7 @@ class _CalendarPageState extends State<CalendarPage> {
                           width: 100,
                           height: 30,
                           decoration: BoxDecoration(
-                            color: iconColor,
+                            color: SoftColorPurple,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Align(
@@ -294,7 +294,7 @@ class _CalendarPageState extends State<CalendarPage> {
                           width: 100,
                           height: 30,
                           decoration: BoxDecoration(
-                            color: iconColor,
+                            color: SoftColorPurple,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Align(

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
-import 'package:service_app/screens/home/profile/edit_profile.dart';
 
 class EditNotificationPage extends StatefulWidget {
   const EditNotificationPage({super.key});
@@ -35,7 +34,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
           titleSpacing: 0,
           title: Container(
             child: Text(
-              'Ред. Уведомления',
+              'Уведомления',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -57,7 +56,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                     flex: 4,
                     child: Container(
                         child: Text(
-                      'Общие Уведомления',
+                      'Все Уведомления',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -71,6 +70,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
+                                activeTrackColor: SoftColorPurple,
                                 value: GeneralNotification,
                                 onChanged: (value) {
                                   setState(() {
@@ -108,6 +108,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
+                                activeTrackColor: SoftColorPurple,
                                 value: Sound,
                                 onChanged: (value) {
                                   setState(() {
@@ -145,10 +146,49 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
+                                activeTrackColor: SoftColorPurple,
                                 value: Vibrate,
                                 onChanged: (value) {
                                   setState(() {
                                     Vibrate = value;
+                                  });
+                                }),
+                          )))
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 22),
+            child: Container(
+              height: 55,
+              // decoration: BoxDecoration(
+              //     border: Border.all(width: 1, color: Colors.black)),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Container(
+                        child: Text(
+                      'Входящие Сообщения',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis),
+                    )),
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: Container(
+                          margin: EdgeInsets.only(right: 20),
+                          child: Transform.scale(
+                            scale: 0.9,
+                            child: Switch(
+                                activeTrackColor: SoftColorPurple,
+                                value: IncomingMessages,
+                                onChanged: (value) {
+                                  setState(() {
+                                    IncomingMessages = value;
                                   });
                                 }),
                           )))
@@ -182,6 +222,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
+                                activeTrackColor: SoftColorPurple,
                                 value: SpecialOffers,
                                 onChanged: (value) {
                                   setState(() {
@@ -205,7 +246,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                     flex: 4,
                     child: Container(
                         child: Text(
-                      'Промо и Скидки',
+                      'Акции и Скидки',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -219,6 +260,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
+                                activeTrackColor: SoftColorPurple,
                                 value: PromoDiscount,
                                 onChanged: (value) {
                                   setState(() {
@@ -242,7 +284,7 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                     flex: 4,
                     child: Container(
                         child: Text(
-                      'Платежи',
+                      'Новые Категории',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -256,10 +298,11 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
-                                value: Payments,
+                                activeTrackColor: SoftColorPurple,
+                                value: NewCategory,
                                 onChanged: (value) {
                                   setState(() {
-                                    Payments = value;
+                                    NewCategory = value;
                                   });
                                 }),
                           )))
@@ -267,6 +310,81 @@ class _EditNotificationPageState extends State<EditNotificationPage> {
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.only(left: 22),
+            child: Container(
+              height: 55,
+              // decoration: BoxDecoration(
+              //     border: Border.all(width: 1, color: Colors.black)),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Container(
+                        child: Text(
+                      'Обновления',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis),
+                    )),
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: Container(
+                          margin: EdgeInsets.only(right: 20),
+                          child: Transform.scale(
+                            scale: 0.9,
+                            child: Switch(
+                                activeTrackColor: SoftColorPurple,
+                                value: Update,
+                                onChanged: (value) {
+                                  setState(() {
+                                    Update = value;
+                                  });
+                                }),
+                          )))
+                ],
+              ),
+            ),
+          ),
+          // Padding(
+          //   padding: EdgeInsets.only(left: 22),
+          //   child: Container(
+          //     height: 55,
+          //     // decoration: BoxDecoration(
+          //     //     border: Border.all(width: 1, color: Colors.black)),
+          //     child: Row(
+          //       children: [
+          //         Expanded(
+          //           flex: 4,
+          //           child: Container(
+          //               child: Text(
+          //             'Платежи',
+          //             style: TextStyle(
+          //                 fontSize: 15,
+          //                 fontWeight: FontWeight.bold,
+          //                 overflow: TextOverflow.ellipsis),
+          //           )),
+          //         ),
+          //         Expanded(
+          //             flex: 1,
+          //             child: Container(
+          //                 margin: EdgeInsets.only(right: 20),
+          //                 child: Transform.scale(
+          //                   scale: 0.9,
+          //                   child: Switch(
+          //                       value: Payments,
+          //                       onChanged: (value) {
+          //                         setState(() {
+          //                           Payments = value;
+          //                         });
+          //                       }),
+          //                 )))
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ])));
   }
 }

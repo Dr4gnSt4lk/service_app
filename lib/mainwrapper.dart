@@ -45,7 +45,7 @@ class _MainWrapperState extends State<MainWrapper> {
               });
               _goToBranch(selectedIndex);
             },
-            selectedItemColor: iconColor,
+            selectedItemColor: SoftColorPurple,
             unselectedItemColor: Colors.grey,
             selectedFontSize: 12,
             selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
@@ -59,7 +59,7 @@ class _MainWrapperState extends State<MainWrapper> {
                     color: Colors.grey,
                   ),
                   activeIcon: SvgPicture.asset('icons/Дом.svg',
-                      color: iconColor, height: 25),
+                      color: SoftColorPurple, height: 25),
                   label: 'Главная'),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
@@ -68,7 +68,7 @@ class _MainWrapperState extends State<MainWrapper> {
                     color: Colors.grey,
                   ),
                   activeIcon: SvgPicture.asset('icons/Документ.svg',
-                      height: 25, color: iconColor),
+                      height: 25, color: SoftColorPurple),
                   label: 'Записи'),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
@@ -77,7 +77,7 @@ class _MainWrapperState extends State<MainWrapper> {
                     color: Colors.grey,
                   ),
                   activeIcon: SvgPicture.asset('icons/Календарь 2.svg',
-                      height: 25, color: iconColor),
+                      height: 25, color: SoftColorPurple),
                   label: 'Календарь'),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
@@ -86,7 +86,7 @@ class _MainWrapperState extends State<MainWrapper> {
                     color: Colors.grey,
                   ),
                   activeIcon: SvgPicture.asset('icons/Бабл.svg',
-                      height: 25, color: iconColor),
+                      height: 25, color: SoftColorPurple),
                   label: 'Сообщения'),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
@@ -95,7 +95,7 @@ class _MainWrapperState extends State<MainWrapper> {
                     color: Colors.grey,
                   ),
                   activeIcon: SvgPicture.asset('icons/Профиль.svg',
-                      height: 25, color: iconColor),
+                      height: 25, color: SoftColorPurple),
                   label: 'Профиль'),
             ],
           ),

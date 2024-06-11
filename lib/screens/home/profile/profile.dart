@@ -66,57 +66,59 @@ class _ProfilePageState extends State<ProfilePage> {
 
               // decoration: BoxDecoration(
               //     border: Border.all(width: 1, color: Colors.black)),
-              child: InkWell(
-                  onTap: () {},
-                  child: Container(
-                    margin: EdgeInsets.only(top: 15),
-                    child: CircleAvatar(
+              child: Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: InkWell(
                       radius: 60,
-                      child: Stack(
-                        children: [
-                          CircleAvatar(
-                            radius: 60,
-                            backgroundColor: Colors.grey.shade200,
-                            child: CircleAvatar(
-                              radius: 70,
-                              backgroundImage: AssetImage('icons/face.png'),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 1,
-                            right: 1,
-                            child: Container(
-                              child: Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Icon(Icons.add_a_photo,
-                                    color: Colors.black),
+                      onTap: () {},
+                      child: Container(
+                        child: CircleAvatar(
+                          radius: 60,
+                          child: Stack(
+                            children: [
+                              CircleAvatar(
+                                radius: 60,
+                                backgroundColor: Colors.grey.shade200,
+                                child: CircleAvatar(
+                                  radius: 70,
+                                  backgroundImage: AssetImage('icons/face.png'),
+                                ),
                               ),
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 3,
-                                    color: Colors.white,
+                              Positioned(
+                                bottom: 1,
+                                right: 1,
+                                child: Container(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Icon(Icons.add_a_photo,
+                                        color: Colors.black),
                                   ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                      50,
-                                    ),
-                                  ),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      offset: Offset(2, 4),
-                                      color: Colors.black.withOpacity(
-                                        0.3,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 3,
+                                        color: Colors.white,
                                       ),
-                                      blurRadius: 3,
-                                    ),
-                                  ]),
-                            ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                          50,
+                                        ),
+                                      ),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          offset: Offset(2, 4),
+                                          color: Colors.black.withOpacity(
+                                            0.3,
+                                          ),
+                                          blurRadius: 3,
+                                        ),
+                                      ]),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                  )),
+                        ),
+                      ))),
             ),
             Container(
                 margin: EdgeInsets.only(top: 10),
@@ -138,292 +140,69 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontWeight: FontWeight.w500,
                       overflow: TextOverflow.ellipsis),
                 )),
-            Padding(
-              padding: EdgeInsets.only(top: 50),
-              child: InkWell(
-                onTap: () {
-                  context.goNamed('EditProfile');
-                },
-                child: Container(
-                  height: 50,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(width: 1, color: Colors.black)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(left: 22),
-                          height: 37,
-                          width: 37,
-                          child: SvgPicture.asset('icons/Профиль_тонкий.svg'),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            child: Text(
-                          'Редактировать Профиль',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis),
-                        )),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          height: 20,
-                          width: 20,
-                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+            SizedBox(
+              height: 50,
             ),
+            EditProfileBuilder('EditProfile', 'Редактировать Профиль',
+                'icons/Профиль_тонкий.svg'),
+            EditProfileBuilder('EditNotification', 'Настройки Уведомлений',
+                'icons/Колокол.svg'),
+            EditProfileBuilder(
+                'Security', 'Безопасность', 'icons/Безопасность.svg'),
             Padding(
               padding: EdgeInsets.only(top: 0),
-              child: InkWell(
-                onTap: () {
-                  context.goNamed('EditNotification');
-                },
-                child: Container(
-                  height: 50,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(width: 1, color: Colors.black)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(left: 22),
-                          height: 35,
-                          width: 35,
-                          child: SvgPicture.asset(
-                            'icons/Колокол.svg',
-                          ),
+              child: Container(
+                height: 50,
+                // decoration: BoxDecoration(
+                //     border: Border.all(width: 1, color: Colors.black)),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        margin: EdgeInsets.only(left: 20),
+                        height: 35,
+                        width: 35,
+                        child: SvgPicture.asset(
+                          'icons/Глаз_вкл.svg',
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            child: Text(
-                          'Настройки Уведомлений',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis),
-                        )),
-                      ),
-                      Expanded(
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                          child: Text(
+                        'Тёмный Режим',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.ellipsis),
+                      )),
+                    ),
+                    Expanded(
                         flex: 1,
                         child: Container(
-                          height: 20,
-                          width: 20,
-                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 0),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 50,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(width: 1, color: Colors.black)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 36,
-                          width: 36,
-                          child: SvgPicture.asset(
-                            'icons/Безопасность.svg',
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            child: Text(
-                          'Безопасность',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis),
-                        )),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          height: 20,
-                          width: 20,
-                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 0),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 50,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(width: 1, color: Colors.black)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(left: 20),
-                          height: 35,
-                          width: 35,
-                          child: SvgPicture.asset(
-                            'icons/Глаз_вкл.svg',
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            child: Text(
-                          'Тёмный Режим',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis),
-                        )),
-                      ),
-                      Expanded(
-                          flex: 1,
-                          child: Container(
-                              margin: EdgeInsets.only(right: 20),
-                              child: Transform.scale(
-                                scale: 0.9,
-                                child: Switch(
-                                    value: darkTheme,
-                                    onChanged: (value) {
+                            margin: EdgeInsets.only(right: 20),
+                            child: Transform.scale(
+                              scale: 0.9,
+                              child: Switch(
+                                  value: darkTheme,
+                                  onChanged: (value) {
+                                    setState(() {
                                       setState(() {
-                                        setState(() {
-                                          darkTheme = value;
-                                        });
+                                        darkTheme = value;
                                       });
-                                    }),
-                              )))
-                    ],
-                  ),
+                                    });
+                                  }),
+                            )))
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 0),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 50,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(width: 1, color: Colors.black)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(left: 22),
-                          height: 36,
-                          width: 36,
-                          child: SvgPicture.asset(
-                            'icons/Замок.svg',
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            child: Text(
-                          'Приватность',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis),
-                        )),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          height: 20,
-                          width: 20,
-                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 0),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 50,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(width: 1, color: Colors.black)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(left: 21),
-                          height: 36,
-                          width: 36,
-                          child: SvgPicture.asset(
-                            'icons/Центр_Помощи.svg',
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                            child: Text(
-                          'Центр Помощи',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis),
-                        )),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          height: 20,
-                          width: 20,
-                          child: SvgPicture.asset('icons/Стрелка_2.svg'),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            EditProfileBuilder('Privacy', 'Приватность', 'icons/Замок.svg'),
+            EditProfileBuilder(
+                'HelpCenter', 'Центр Помощи', 'icons/Центр_Помощи.svg'),
             Padding(
               padding: EdgeInsets.only(top: 0),
               child: InkWell(
@@ -477,6 +256,55 @@ class _ProfilePageState extends State<ProfilePage> {
         )));
   }
 
+  Padding EditProfileBuilder(String Navigation, String Name, String Icon) {
+    return Padding(
+      padding: EdgeInsets.only(top: 0),
+      child: InkWell(
+        onTap: () {
+          context.goNamed(Navigation);
+        },
+        child: Container(
+          height: 50,
+          // decoration: BoxDecoration(
+          //     border: Border.all(width: 1, color: Colors.black)),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.only(left: 22),
+                  height: 37,
+                  width: 37,
+                  child: SvgPicture.asset(Icon),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                flex: 4,
+                child: Container(
+                    child: Text(
+                  Name,
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis),
+                )),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 20,
+                  width: 20,
+                  child: SvgPicture.asset('icons/Стрелка_2.svg'),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   void logOut(context) {
     showModalBottomSheet(
         context: context,
@@ -515,7 +343,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(180, 60),
-                          foregroundColor: iconColor,
+                          foregroundColor: SoftColorPurple,
                           backgroundColor: Color.fromARGB(255, 240, 232, 252),
                         ),
                         child: Text(
@@ -532,7 +360,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         style: ElevatedButton.styleFrom(
                             fixedSize: Size(180, 60),
                             foregroundColor: Color.fromARGB(255, 240, 232, 252),
-                            backgroundColor: iconColor),
+                            backgroundColor: SoftColorPurple),
                         child: Text(
                           'Да',
                           style: TextStyle(

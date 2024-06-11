@@ -67,7 +67,7 @@ class _FillPageState extends State<FillPage> {
                         child: IconButton(
                           icon: SvgPicture.asset(
                             'icons/Картинка.svg',
-                            color: iconColor,
+                            color: SoftColorPurple,
                             height: 30,
                           ),
                           onPressed: () {},
@@ -247,13 +247,14 @@ class _FillPageState extends State<FillPage> {
                           style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.white),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(iconColor),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  SoftColorPurple),
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(31),
-                                      side: BorderSide(color: iconColor)))),
+                                      side:
+                                          BorderSide(color: SoftColorPurple)))),
                         )))
               ]),
             ]))));

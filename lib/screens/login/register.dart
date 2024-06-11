@@ -141,10 +141,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Checkbox(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
-                      side: MaterialStateBorderSide.resolveWith(
-                          (states) => BorderSide(width: 2.7, color: iconColor)),
+                      side: MaterialStateBorderSide.resolveWith((states) =>
+                          BorderSide(width: 2.7, color: SoftColorPurple)),
                       value: _rememberMe,
-                      activeColor: iconColor,
+                      activeColor: SoftColorPurple,
                       onChanged: (newBool) {
                         setState(() {
                           _rememberMe = !_rememberMe;
@@ -183,13 +183,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.white),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(iconColor),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  SoftColorPurple),
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(31),
-                                      side: BorderSide(color: iconColor)))),
+                                      side:
+                                          BorderSide(color: SoftColorPurple)))),
                         )))
               ]),
               Container(

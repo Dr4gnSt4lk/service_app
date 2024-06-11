@@ -6,7 +6,15 @@ const bgColor = Color(0xFFFFE6E6);
 const bgDarkColor = Color(0xFFffd7d7);
 const bgDetColor = Color(0xFFE1AFD1);
 const addColor = Color(0xFFAD88C6);
-const iconColor = Color(0xFF7469B6);
+
+//Чтобьі не бьіло мусора, тут напишу удтвержденную палитру для темной темьі
+const Dark_bgColor = Color.fromARGB(255, 24, 26, 32);
+const Dark_elementsColor = Color.fromARGB(255, 30, 33, 41);
+const Dark_innactiveColor = Color.fromARGB(255, 99, 100, 105);
+
+const MainColorPurple = Color.fromARGB(255, 113, 20, 249);
+const SoftColorPurple = Color(0xFF7469B6);
+const MainColorRed = Color.fromARGB(255, 212, 84, 81);
 
 final banners = [
   'Доставка.png',
@@ -58,6 +66,17 @@ var randomRatings = List.generate(8, (_) => 2 + Random().nextDouble() * 3.0);
 bool GeneralNotification = false;
 bool Sound = false;
 bool Vibrate = false;
+bool IncomingMessages = false;
 bool SpecialOffers = false;
 bool PromoDiscount = false;
+bool NewCategory = false;
+bool Update = false;
 bool Payments = false;
+
+//Безопасность
+bool RememberMe = false;
+
+//Приватность
+bool AllowPrivateMessage = false;
+bool FindProfile = false;
+bool VisibilityContactInformation = false;

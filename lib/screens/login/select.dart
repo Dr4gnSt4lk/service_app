@@ -31,13 +31,13 @@ class SelectPage extends StatelessWidget {
                         style: ButtonStyle(
                             foregroundColor:
                                 MaterialStateProperty.all<Color>(Colors.white),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(iconColor),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                SoftColorPurple),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(19),
-                                    side: BorderSide(color: iconColor)))),
+                                    side: BorderSide(color: SoftColorPurple)))),
                       )))
             ]),
             Row(children: [
@@ -56,13 +56,13 @@ class SelectPage extends StatelessWidget {
                         style: ButtonStyle(
                             foregroundColor:
                                 MaterialStateProperty.all<Color>(Colors.white),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(iconColor),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                SoftColorPurple),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(19),
-                                    side: BorderSide(color: iconColor)))),
+                                    side: BorderSide(color: SoftColorPurple)))),
                       )))
             ]),
             Container(
@@ -75,7 +75,7 @@ class SelectPage extends StatelessWidget {
                     child: Text(
                       'гость',
                       style: TextStyle(
-                          color: iconColor,
+                          color: SoftColorPurple,
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),

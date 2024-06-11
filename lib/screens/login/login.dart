@@ -141,10 +141,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: Checkbox(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
-                      side: MaterialStateBorderSide.resolveWith(
-                          (states) => BorderSide(width: 2.7, color: iconColor)),
+                      side: MaterialStateBorderSide.resolveWith((states) =>
+                          BorderSide(width: 2.7, color: SoftColorPurple)),
                       value: _rememberMe,
-                      activeColor: iconColor,
+                      activeColor: SoftColorPurple,
                       onChanged: (newBool) {
                         setState(() {
                           _rememberMe = !_rememberMe;
@@ -174,13 +174,14 @@ class _LoginPageState extends State<LoginPage> {
                           style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.white),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(iconColor),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  SoftColorPurple),
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(31),
-                                      side: BorderSide(color: iconColor)))),
+                                      side:
+                                          BorderSide(color: SoftColorPurple)))),
                         )))
               ]),
               Container(
@@ -249,7 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 'Регистрация',
                                 style: TextStyle(
-                                    color: iconColor,
+                                    color: SoftColorPurple,
                                     fontWeight: FontWeight.bold),
                               ),
                               onTap: () {

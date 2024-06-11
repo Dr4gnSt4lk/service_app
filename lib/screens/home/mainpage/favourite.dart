@@ -84,7 +84,9 @@ class _FavouritePageState extends State<FavouritePage> {
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
-                                      color: services ? iconColor : Colors.grey,
+                                      color: services
+                                          ? SoftColorPurple
+                                          : Colors.grey,
                                       width: services ? 3 : 1))),
                           child: Padding(
                               padding: EdgeInsets.only(bottom: 5),
@@ -94,7 +96,9 @@ class _FavouritePageState extends State<FavouritePage> {
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: services ? iconColor : Colors.grey),
+                                    color: services
+                                        ? SoftColorPurple
+                                        : Colors.grey),
                               )),
                         ),
                         onTap: () {
@@ -112,8 +116,9 @@ class _FavouritePageState extends State<FavouritePage> {
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
-                                      color:
-                                          !services ? iconColor : Colors.grey,
+                                      color: !services
+                                          ? SoftColorPurple
+                                          : Colors.grey,
                                       width: !services ? 4 : 1))),
                           child: Padding(
                               padding: EdgeInsets.only(bottom: 5),
@@ -123,7 +128,9 @@ class _FavouritePageState extends State<FavouritePage> {
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: !services ? iconColor : Colors.grey),
+                                    color: !services
+                                        ? SoftColorPurple
+                                        : Colors.grey),
                               )),
                         ),
                         onTap: () {
@@ -147,12 +154,12 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
-                                        width: 3.0, color: iconColor),
+                                        width: 3.0, color: SoftColorPurple),
                                     foregroundColor: Tag1isPressed
                                         ? Colors.white
-                                        : iconColor,
+                                        : SoftColorPurple,
                                     backgroundColor: Tag1isPressed
-                                        ? iconColor
+                                        ? SoftColorPurple
                                         : Colors.white),
                                 child: Text(
                                   'Все',
@@ -172,12 +179,12 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
-                                        width: 3.0, color: iconColor),
+                                        width: 3.0, color: SoftColorPurple),
                                     foregroundColor: Tag2isPressed
                                         ? Colors.white
-                                        : iconColor,
+                                        : SoftColorPurple,
                                     backgroundColor: Tag2isPressed
-                                        ? iconColor
+                                        ? SoftColorPurple
                                         : Colors.white),
                                 child: Text(
                                   'Клининг',
@@ -197,12 +204,12 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
-                                        width: 3.0, color: iconColor),
+                                        width: 3.0, color: SoftColorPurple),
                                     foregroundColor: Tag3isPressed
                                         ? Colors.white
-                                        : iconColor,
+                                        : SoftColorPurple,
                                     backgroundColor: Tag3isPressed
-                                        ? iconColor
+                                        ? SoftColorPurple
                                         : Colors.white),
                                 child: Text(
                                   'Ремонт',
@@ -222,12 +229,12 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
-                                        width: 3.0, color: iconColor),
+                                        width: 3.0, color: SoftColorPurple),
                                     foregroundColor: Tag4isPressed
                                         ? Colors.white
-                                        : iconColor,
+                                        : SoftColorPurple,
                                     backgroundColor: Tag4isPressed
-                                        ? iconColor
+                                        ? SoftColorPurple
                                         : Colors.white),
                                 child: Text(
                                   'Покраска',
@@ -247,12 +254,12 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
-                                        width: 3.0, color: iconColor),
+                                        width: 3.0, color: SoftColorPurple),
                                     foregroundColor: Tag5isPressed
                                         ? Colors.white
-                                        : iconColor,
+                                        : SoftColorPurple,
                                     backgroundColor: Tag5isPressed
-                                        ? iconColor
+                                        ? SoftColorPurple
                                         : Colors.white),
                                 child: Text(
                                   'Готовка',
@@ -272,12 +279,12 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
-                                        width: 3.0, color: iconColor),
+                                        width: 3.0, color: SoftColorPurple),
                                     foregroundColor: Tag6isPressed
                                         ? Colors.white
-                                        : iconColor,
+                                        : SoftColorPurple,
                                     backgroundColor: Tag6isPressed
-                                        ? iconColor
+                                        ? SoftColorPurple
                                         : Colors.white),
                                 child: Text(
                                   'Доставка',
@@ -330,130 +337,132 @@ class _FavouritePageState extends State<FavouritePage> {
   }
 
   Widget buildCard(int index) {
-    return InkWell(
-        onTap: () {},
-        child: Container(
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+    return Padding(
+        padding: EdgeInsets.only(top: 10),
+        child: InkWell(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(12, 20, 9, 20),
-                    child: Container(
-                        height: 115,
-                        width: 115,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.asset(
-                          'jobs/${jobs[index]}',
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 9, 20),
-                    child: Container(
-                      height: 115,
-                      width: 155,
-                      decoration: BoxDecoration(),
-                      child: Column(
-                        children: [
-                          Flexible(
-                              child: Container(
-                            width: 150,
-                            child: Text(
-                              '${names[index]}',
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey[600]),
-                            ),
-                          )),
-                          Flexible(
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              width: 150,
-                              child: Text(
-                                '${work[index]} ',
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis),
-                              ),
-                            ),
-                          ),
-                          Flexible(
-                            child: Container(
-                              padding: EdgeInsets.only(top: 8),
-                              width: 150,
-                              child: Text(
-                                '${(randomPrices[index] ~/ 100) * 100}' + ' ₽',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w900,
-                                  color: iconColor,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(12, 20, 9, 20),
+                        child: Container(
+                            height: 115,
+                            width: 115,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset(
+                              'jobs/${jobs[index]}',
+                              fit: BoxFit.fill,
+                            )),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 20, 9, 20),
+                        child: Container(
+                          height: 115,
+                          width: 155,
+                          decoration: BoxDecoration(),
+                          child: Column(
+                            children: [
+                              Flexible(
+                                  child: Container(
+                                width: 150,
+                                child: Text(
+                                  '${names[index]}',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey[600]),
+                                ),
+                              )),
+                              Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                  width: 150,
+                                  child: Text(
+                                    '${work[index]} ',
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        overflow: TextOverflow.ellipsis),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          Flexible(
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(2, 15, 0, 0),
-                              width: 150,
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.orangeAccent,
-                                    size: 15,
-                                  ),
-                                  Text(
-                                    ' ${randomRatings[index].toStringAsFixed(2)}' +
-                                        '  |' +
-                                        '  ${randomReviews[index]}' +
-                                        ' отзывов',
+                              Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 8),
+                                  width: 150,
+                                  child: Text(
+                                    '${(randomPrices[index] ~/ 100) * 100}' +
+                                        ' ₽',
                                     style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w900,
+                                      color: SoftColorPurple,
                                     ),
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                              Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(2, 15, 0, 0),
+                                  width: 150,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.orangeAccent,
+                                        size: 15,
+                                      ),
+                                      Text(
+                                        ' ${randomRatings[index].toStringAsFixed(2)}' +
+                                            '  |' +
+                                            '  ${randomReviews[index]}' +
+                                            ' отзывов',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(20, 20, 9, 0),
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(),
-                        child: IconButton(
-                            onPressed: () {
-                              deliteFavorite(index);
-                            },
-                            icon: Transform.flip(
-                                flipX: true,
-                                child: SvgPicture.asset(
-                                  'icons/Закладка 3.svg',
-                                  color: iconColor,
-                                  height: 25,
-                                ))),
-                      ))
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(20, 20, 9, 0),
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(),
+                            child: IconButton(
+                                onPressed: () {
+                                  deliteFavorite(index);
+                                },
+                                icon: Transform.flip(
+                                    flipX: true,
+                                    child: SvgPicture.asset(
+                                      'icons/Закладка 3.svg',
+                                      color: SoftColorPurple,
+                                      height: 25,
+                                    ))),
+                          ))
+                    ],
+                  )
                 ],
-              )
-            ],
-          ),
-        ));
+              ),
+            )));
   }
 
   void deliteFavorite(int index) {
@@ -541,7 +550,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w900,
-                                          color: iconColor,
+                                          color: SoftColorPurple,
                                         ),
                                       ),
                                     ),
@@ -586,7 +595,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                         flipX: true,
                                         child: SvgPicture.asset(
                                           'icons/Закладка 3.svg',
-                                          color: iconColor,
+                                          color: SoftColorPurple,
                                           height: 25,
                                         ))),
                               ))
@@ -604,10 +613,10 @@ class _FavouritePageState extends State<FavouritePage> {
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(180, 60),
                           foregroundColor: Tag1isPressed
-                              ? iconColor
+                              ? SoftColorPurple
                               : Color.fromARGB(255, 240, 232, 252),
                           backgroundColor:
-                              Tag1isPressed ? Colors.white : iconColor,
+                              Tag1isPressed ? Colors.white : SoftColorPurple,
                         ),
                         child: Text(
                           'Отменить',
@@ -624,9 +633,9 @@ class _FavouritePageState extends State<FavouritePage> {
                             fixedSize: Size(180, 60),
                             foregroundColor: Tag1isPressed
                                 ? Color.fromARGB(255, 240, 232, 252)
-                                : iconColor,
+                                : SoftColorPurple,
                             backgroundColor: Tag1isPressed
-                                ? iconColor
+                                ? SoftColorPurple
                                 : Color.fromARGB(255, 240, 232, 252)),
                         child: Text(
                           'Да',
