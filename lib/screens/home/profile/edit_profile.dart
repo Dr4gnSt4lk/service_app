@@ -31,7 +31,7 @@ class EditProfilePage extends StatelessWidget {
           titleSpacing: 0,
           title: Container(
             child: Text(
-              'Редактировать Профиль',
+              'Ред. Профиль',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,

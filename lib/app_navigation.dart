@@ -13,6 +13,7 @@ import 'package:service_app/screens/home/mainpage/services.dart';
 import 'package:service_app/screens/home/mainpage/special.dart';
 import 'package:service_app/screens/home/profile/profile.dart';
 import 'package:service_app/screens/home/profile/edit_profile.dart';
+import 'package:service_app/screens/home/profile/edit_notification.dart';
 import 'package:service_app/screens/login/fill.dart';
 import 'package:service_app/screens/login/login.dart';
 import 'package:service_app/screens/login/register.dart';
@@ -215,6 +216,15 @@ class AppNavigation {
                         name: 'EditProfile',
                         builder: (context, state) {
                           return EditProfilePage(
+                            key: state.pageKey,
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'edit_notification',
+                        name: 'EditNotification',
+                        builder: (context, state) {
+                          return EditNotificationPage(
                             key: state.pageKey,
                           );
                         },

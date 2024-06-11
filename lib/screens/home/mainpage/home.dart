@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
                   context.goNamed('Notification');
                 },
                 icon: SvgPicture.asset(
-                  'icons/Колокол.svg',
-                  height: 25,
+                  'icons/Колокол_главная.svg',
+                  height: 26,
                 )),
             IconButton(
                 visualDensity: VisualDensity(horizontal: 0, vertical: -1),

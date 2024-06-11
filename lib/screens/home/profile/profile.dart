@@ -152,7 +152,7 @@ class ProfilePage extends StatelessWidget {
                           margin: EdgeInsets.only(left: 22),
                           height: 37,
                           width: 37,
-                          child: SvgPicture.asset('icons/Профиль.svg'),
+                          child: SvgPicture.asset('icons/Профиль_тонкий.svg'),
                         ),
                       ),
                       SizedBox(width: 10),
@@ -183,7 +183,9 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 0),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.goNamed('EditNotification');
+                },
                 child: Container(
                   height: 50,
                   // decoration: BoxDecoration(
@@ -308,10 +310,12 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                           flex: 1,
                           child: Container(
-                            margin: EdgeInsets.only(right: 20),
-                            child:
-                                Switch(value: darkTheme, onChanged: (value) {}),
-                          ))
+                              margin: EdgeInsets.only(right: 20),
+                              child: Transform.scale(
+                                scale: 0.9,
+                                child: Switch(
+                                    value: darkTheme, onChanged: (value) {}),
+                              )))
                     ],
                   ),
                 ),
