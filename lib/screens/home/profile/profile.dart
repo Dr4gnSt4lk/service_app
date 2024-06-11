@@ -9,9 +9,13 @@ import 'package:service_app/screens/home/profile/edit_profile.dart';
 
 bool darkTheme = false;
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -314,7 +318,14 @@ class ProfilePage extends StatelessWidget {
                               child: Transform.scale(
                                 scale: 0.9,
                                 child: Switch(
-                                    value: darkTheme, onChanged: (value) {}),
+                                    value: darkTheme,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        setState(() {
+                                          darkTheme = value;
+                                        });
+                                      });
+                                    }),
                               )))
                     ],
                   ),

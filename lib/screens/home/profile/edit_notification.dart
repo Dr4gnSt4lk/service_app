@@ -7,16 +7,13 @@ import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
 import 'package:service_app/screens/home/profile/edit_profile.dart';
 
-bool GeneralNotification = false;
-bool Sound = false;
-bool Vibrate = false;
-bool SpecialOffers = false;
-bool PromoDiscount = false;
-bool Payments = false;
-
-class EditNotificationPage extends StatelessWidget {
+class EditNotificationPage extends StatefulWidget {
   const EditNotificationPage({super.key});
+  @override
+  _EditNotificationPageState createState() => _EditNotificationPageState();
+}
 
+class _EditNotificationPageState extends State<EditNotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +23,7 @@ class EditNotificationPage extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           leading: IconButton(
               onPressed: () {
-                GoRouter.of(context).pop();
+                context.goNamed('Profile');
               },
               icon: Transform.flip(
                   flipX: true,
@@ -75,7 +72,11 @@ class EditNotificationPage extends StatelessWidget {
                             scale: 0.9,
                             child: Switch(
                                 value: GeneralNotification,
-                                onChanged: (value) {}),
+                                onChanged: (value) {
+                                  setState(() {
+                                    GeneralNotification = value;
+                                  });
+                                }),
                           )))
                 ],
               ),
@@ -143,8 +144,13 @@ class EditNotificationPage extends StatelessWidget {
                           margin: EdgeInsets.only(right: 20),
                           child: Transform.scale(
                             scale: 0.9,
-                            child:
-                                Switch(value: Vibrate, onChanged: (value) {}),
+                            child: Switch(
+                                value: Vibrate,
+                                onChanged: (value) {
+                                  setState(() {
+                                    Vibrate = value;
+                                  });
+                                }),
                           )))
                 ],
               ),
@@ -176,7 +182,12 @@ class EditNotificationPage extends StatelessWidget {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
-                                value: SpecialOffers, onChanged: (value) {}),
+                                value: SpecialOffers,
+                                onChanged: (value) {
+                                  setState(() {
+                                    SpecialOffers = value;
+                                  });
+                                }),
                           )))
                 ],
               ),
@@ -208,7 +219,12 @@ class EditNotificationPage extends StatelessWidget {
                           child: Transform.scale(
                             scale: 0.9,
                             child: Switch(
-                                value: PromoDiscount, onChanged: (value) {}),
+                                value: PromoDiscount,
+                                onChanged: (value) {
+                                  setState(() {
+                                    PromoDiscount = value;
+                                  });
+                                }),
                           )))
                 ],
               ),
@@ -239,8 +255,13 @@ class EditNotificationPage extends StatelessWidget {
                           margin: EdgeInsets.only(right: 20),
                           child: Transform.scale(
                             scale: 0.9,
-                            child:
-                                Switch(value: Payments, onChanged: (value) {}),
+                            child: Switch(
+                                value: Payments,
+                                onChanged: (value) {
+                                  setState(() {
+                                    Payments = value;
+                                  });
+                                }),
                           )))
                 ],
               ),

@@ -19,7 +19,7 @@ class EditProfilePage extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           leading: IconButton(
               onPressed: () {
-                GoRouter.of(context).pop();
+                context.goNamed('Profile');
               },
               icon: Transform.flip(
                   flipX: true,

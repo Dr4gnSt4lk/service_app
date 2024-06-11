@@ -53,3 +53,11 @@ final names = [
 var randomReviews = List<int>.generate(8, (_) => Random().nextInt(500) + 25);
 var randomPrices = List<int>.generate(8, (_) => Random().nextInt(5000) + 1000);
 var randomRatings = List.generate(8, (_) => 2 + Random().nextDouble() * 3.0);
+
+//Редактировать Уведомления
+bool GeneralNotification = false;
+bool Sound = false;
+bool Vibrate = false;
+bool SpecialOffers = false;
+bool PromoDiscount = false;
+bool Payments = false;
