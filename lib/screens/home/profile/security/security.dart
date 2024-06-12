@@ -111,7 +111,9 @@ class _SecurityPageState extends State<SecurityPage> {
                     color: MainColorPurple,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.goNamed('ChangePassword');
+                },
               )),
           Padding(
               padding: EdgeInsets.fromLTRB(22, 30, 22, 0),

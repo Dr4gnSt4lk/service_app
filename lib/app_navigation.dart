@@ -15,7 +15,8 @@ import 'package:service_app/screens/home/profile/help_center.dart';
 import 'package:service_app/screens/home/profile/profile.dart';
 import 'package:service_app/screens/home/profile/edit_profile.dart';
 import 'package:service_app/screens/home/profile/edit_notification.dart';
-import 'package:service_app/screens/home/profile/security.dart';
+import 'package:service_app/screens/home/profile/security/security.dart';
+import 'package:service_app/screens/home/profile/security/change_password.dart';
 import 'package:service_app/screens/home/profile/privacy.dart';
 import 'package:service_app/screens/home/profile/help_center.dart';
 import 'package:service_app/screens/login/fill.dart';
@@ -234,14 +235,24 @@ class AppNavigation {
                         },
                       ),
                       GoRoute(
-                        path: 'security',
-                        name: 'Security',
-                        builder: (context, state) {
-                          return SecurityPage(
-                            key: state.pageKey,
-                          );
-                        },
-                      ),
+                          path: 'security',
+                          name: 'Security',
+                          builder: (context, state) {
+                            return SecurityPage(
+                              key: state.pageKey,
+                            );
+                          },
+                          routes: [
+                            GoRoute(
+                              path: 'change_password',
+                              name: 'ChangePassword',
+                              builder: (context, state) {
+                                return ChangePasswordPage(
+                                  key: state.pageKey,
+                                );
+                              },
+                            ),
+                          ]),
                       GoRoute(
                         path: 'privacy',
                         name: 'Privacy',

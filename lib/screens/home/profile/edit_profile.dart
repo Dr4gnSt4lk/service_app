@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -17,25 +18,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController _dateController = TextEditingController();
   DateTime? _selectedDate;
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-        _dateController.text = DateFormat('dd.MM.yyyy').format(picked);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
           scrolledUnderElevation: 0,
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -196,7 +182,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: TextFormField(
           controller: _dateController,
           readOnly: true,
-          onTap: () => _selectDate(context),
+          onTap: () => _Date(context),
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.bold,
@@ -225,6 +211,33 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
     );
+  }
+
+  Future<void> _Date(BuildContext context) async {
+    final DateTime? picked = await DatePicker.showSimpleDatePicker(
+      context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2090),
+      dateFormat: "dd-MMMM-yyyy",
+      locale: DateTimePickerLocale.ru,
+      looping: true,
+      titleText: 'Выберите Дату',
+      itemTextStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+          overflow: TextOverflow.ellipsis),
+      confirmText: 'Подтвердить',
+      cancelText: 'Отмена',
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+    );
+
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        _dateController.text = DateFormat('dd.MM.yyyy').format(picked);
+      });
+    }
   }
 
   Padding UpdateButton(BuildContext context) {

@@ -70,7 +70,7 @@ class _FavouritePageState extends State<FavouritePage> {
             )
           ],
           bottom: PreferredSize(
-              preferredSize: Size.fromHeight(120),
+              preferredSize: Size.fromHeight(125),
               child: Column(
                 children: [
                   Container(
