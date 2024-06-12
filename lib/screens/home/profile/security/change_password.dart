@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:service_app/constants.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({super.key});
@@ -18,60 +19,63 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        leading: IconButton(
-            onPressed: () {
-              context.goNamed('Security');
-            },
-            icon: Transform.flip(
-                flipX: true,
-                child: SvgPicture.asset(
-                  'icons/Marker.svg',
-                  color: Colors.black,
-                  height: 25,
-                ))),
-        titleSpacing: 0,
-        title: Container(
-          child: Text(
-            'Безопасность',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
+    return Stack(children: [
+      Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          scrolledUnderElevation: 0,
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          leading: IconButton(
+              onPressed: () {
+                context.goNamed('Security');
+              },
+              icon: Transform.flip(
+                  flipX: true,
+                  child: SvgPicture.asset(
+                    'icons/Marker.svg',
+                    color: Colors.black,
+                    height: 25,
+                  ))),
+          titleSpacing: 0,
+          title: Container(
+            child: Text(
+              'Безопасность',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        body: ColorfulSafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: ListView(
+              children: [
+                Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Image.network(
+                        'https://cdn.donmai.us/original/4c/42/__archer_fate_and_1_more_drawn_by_ddal__4c420f30c5946409f4ff6ac6350fc9f7.jpg',
+                        height: 350,
+                      ),
+                      PasswordField(label: 'Создать новый пароль'),
+                      PasswordField(label: 'Повторить новый пароль'),
+                      SizedBox(height: 5),
+                      RememberMeButton(),
+                      SizedBox(height: 25),
+                      ContinueButton(),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
-      body: ColorfulSafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: ListView(
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    Image.network(
-                      'https://cdn.donmai.us/original/4c/42/__archer_fate_and_1_more_drawn_by_ddal__4c420f30c5946409f4ff6ac6350fc9f7.jpg',
-                      height: 350,
-                    ),
-                    PasswordField(label: 'Создать Новый Пароль'),
-                    PasswordField(label: 'Повторить Новый Пароль'),
-                    SizedBox(height: 5),
-                    RememberMeButton(),
-                    SizedBox(height: 25),
-                    ContinueButton(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+      if (isLoading) LoadingScreen(),
+    ]);
   }
 
   Padding ContinueButton() {
@@ -90,7 +94,13 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               color: Color.fromARGB(255, 240, 232, 252),
             ),
           ),
-          onPressed: () {},
+          onPressed: () async {
+            setState(() => isLoading = true);
+            //call server API
+            await Future.delayed(const Duration(seconds: 3));
+            setState(() => isLoading = false);
+            context.goNamed('Profile');
+          },
         ));
   }
 
@@ -189,44 +199,64 @@ class _PasswordFieldState extends State<PasswordField> {
 class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.network(
-              'https://cdn.donmai.us/original/4c/42/__archer_fate_and_1_more_drawn_by_ddal__4c420f30c5946409f4ff6ac6350fc9f7.jpg',
-              height: 350,
+    return Container(
+        width: 1000,
+        height: 1000,
+        color: Color.fromARGB(136, 0, 0, 0),
+        child: Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.network(
+                  'https://cdn.donmai.us/original/4c/42/__archer_fate_and_1_more_drawn_by_ddal__4c420f30c5946409f4ff6ac6350fc9f7.jpg',
+                  height: 200,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Поздравляем!',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: SoftColorPurple,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                    'Ваш аккаунт готов к использованию. Через несколько секунд вы будете перенаправлены на главную страницу.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      overflow: TextOverflow.visible,
+                    )),
+                SizedBox(height: 20),
+                SpinKitCircle(
+                  size: 80,
+                  color: SoftColorPurple,
+                )
+              ],
             ),
-            SizedBox(height: 20),
-            Text(
-              'Congratulations!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.purple,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Your account is ready to use. You will be redirected to the Home page in a few seconds..',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-              ),
-            ),
-            SizedBox(height: 20),
-            CircularProgressIndicator(
-              color: Colors.purple,
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
+
+
+// void showLoadingDialog(BuildContext context) {
+//   showGeneralDialog(
+//     context: context,
+//     barrierDismissible: false,
+//     barrierLabel: "Loading",
+//     pageBuilder: (context, _, __) {
+//       return LoadingScreen();
+//     },
+//   );
+// }
