@@ -69,50 +69,25 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: InkWell(
-                      radius: 60,
                       onTap: () {},
                       child: Container(
                         child: CircleAvatar(
-                          radius: 60,
+                          radius: 70,
+                          backgroundImage: AssetImage('icons/face.png'),
                           child: Stack(
                             children: [
-                              CircleAvatar(
-                                radius: 60,
-                                backgroundColor: Colors.grey.shade200,
-                                child: CircleAvatar(
-                                  radius: 70,
-                                  backgroundImage: AssetImage('icons/face.png'),
-                                ),
-                              ),
                               Positioned(
-                                bottom: 1,
-                                right: 1,
+                                bottom: -4,
+                                right: -4,
                                 child: Container(
                                   child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Icon(Icons.add_a_photo,
-                                        color: Colors.black),
-                                  ),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 3,
-                                        color: Colors.white,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                          50,
-                                        ),
-                                      ),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          offset: Offset(2, 4),
-                                          color: Colors.black.withOpacity(
-                                            0.3,
-                                          ),
-                                          blurRadius: 3,
-                                        ),
-                                      ]),
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: SvgPicture.asset(
+                                        'icons/Картинка.svg',
+                                        width: 35,
+                                        height: 35,
+                                        color: SoftColorPurple,
+                                      )),
                                 ),
                               ),
                             ],

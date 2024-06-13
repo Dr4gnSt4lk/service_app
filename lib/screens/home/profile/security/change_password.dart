@@ -106,7 +106,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   Widget RememberMeButton() {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 81),
+        padding: EdgeInsets.symmetric(horizontal: 70),
         child: ListTileTheme(
             horizontalTitleGap: 0,
             child: CheckboxListTile(

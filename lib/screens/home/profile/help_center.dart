@@ -218,7 +218,8 @@ class _HelpCenterPageState extends State<HelpCenterPage> {
           borderRadius: BorderRadius.circular(25),
           collapsedIcon: Padding(
             padding: EdgeInsets.only(right: 5),
-            child: SvgPicture.asset('icons/Стрелка вниз.svg'),
+            child: SvgPicture.asset('icons/ЖирнаяСтрелкаВниз.svg',
+                color: SoftColorPurple),
           ),
           questionTextStyle: TextStyle(
             fontSize: 18,

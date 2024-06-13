@@ -359,7 +359,7 @@ class _FavouritePageState extends State<FavouritePage> {
                             width: 115,
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Image.asset(
                               'jobs/${jobs[index]}',
                               fit: BoxFit.fill,
