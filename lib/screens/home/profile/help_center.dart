@@ -391,9 +391,9 @@ class _HelpCenterPageState extends State<HelpCenterPage> {
           shrinkWrap: true,
           children: [
             ContactUsNavigation('Profile', 'Обслуживание клиентов',
-                'icons/Колокол_главная.svg'),
+                'icons/Наушники_с_Микро.svg'),
             ContactUsNavigation(
-                'Profile', 'Оставить тикет', 'icons/Фонарь.svg'),
+                'Profile', 'Оставить тикет', 'icons/ПлатВопросы.svg'),
           ],
         ));
   }

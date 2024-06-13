@@ -11,127 +11,91 @@ class BookingsPage extends StatefulWidget {
   State<BookingsPage> createState() => _BookingsPageState();
 }
 
-class _BookingsPageState extends State<BookingsPage> {
-  bool upcoming = true;
+class _BookingsPageState extends State<BookingsPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-          scrolledUnderElevation: 0,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-              onPressed: () {},
-              icon: Transform.flip(
-                  flipX: true,
-                  child: SvgPicture.asset(
-                    'icons/Marker.svg',
-                    color: Colors.black,
-                    height: 25,
-                  ))),
-          titleSpacing: 0,
-          title: Container(
-            child: Text(
-              'Бронь',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {},
+          icon: Transform.flip(
+            flipX: true,
+            child: SvgPicture.asset(
+              'icons/Marker.svg',
+              color: Colors.black,
+              height: 25,
             ),
           ),
-          actions: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
-              child: IconButton(
-                  onPressed: () {
-                    // GoRouter.of(context).pop();
-                  },
-                  icon: Transform.flip(
-                      child: SvgPicture.asset(
-                    'icons/Пуппа.svg',
-                    height: 25,
-                  ))),
+        ),
+        titleSpacing: 0,
+        title: Text(
+          'Записи',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // GoRouter.of(context).pop();
+            },
+            icon: SvgPicture.asset(
+              'icons/Пуппа.svg',
+              height: 25,
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 3, 10, 0),
-              child: IconButton(
-                  onPressed: () {
-                    // GoRouter.of(context).pop();
-                  },
-                  icon: Transform.flip(
-                      child: SvgPicture.asset(
-                    'icons/3 точки.svg',
-                    height: 25,
-                  ))),
-            )
+          ),
+          IconButton(
+            onPressed: () {
+              // GoRouter.of(context).pop();
+            },
+            icon: SvgPicture.asset(
+              'icons/3 точки.svg',
+              height: 25,
+            ),
+          )
+        ],
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(text: 'Предстоящие'),
+            Tab(text: 'Выполнено'),
+            Tab(text: 'Отменено'),
           ],
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: Container(
-              padding: EdgeInsets.only(left: 18, right: 18),
-              child: Row(children: [
-                Expanded(
-                    child: GestureDetector(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: upcoming ? SoftColorPurple : Colors.grey,
-                                width: upcoming ? 3 : 1))),
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: 5),
-                        child: Text(
-                          'Предстоящее',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: upcoming ? SoftColorPurple : Colors.grey),
-                        )),
-                  ),
-                  onTap: () {
-                    upcoming
-                        ? null
-                        : setState(() {
-                            upcoming = true;
-                          });
-                  },
-                )),
-                Expanded(
-                    child: GestureDetector(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color:
-                                    !upcoming ? SoftColorPurple : Colors.grey,
-                                width: !upcoming ? 4 : 1))),
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: 5),
-                        child: Text(
-                          'Выполнено',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: !upcoming ? SoftColorPurple : Colors.grey),
-                        )),
-                  ),
-                  onTap: () {
-                    !upcoming
-                        ? null
-                        : setState(() {
-                            upcoming = false;
-                          });
-                  },
-                ))
-              ]),
-            ),
-          )),
-      body: ColorfulSafeArea(child: upcoming ? Upcoming() : Completed()),
+          indicatorColor: SoftColorPurple,
+          labelColor: SoftColorPurple,
+          unselectedLabelColor: Colors.grey,
+          labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          unselectedLabelStyle:
+              TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Upcoming(),
+          Completed(),
+          Canceled(),
+        ],
+      ),
     );
   }
 
@@ -178,12 +142,106 @@ class _BookingsPageState extends State<BookingsPage> {
             date: '26 Июня | 07:00 - 12:00',
             location: 'ул. Хрен Знает, д. Сам придумай, кв. 12',
           ),
+          UpcomingBigCard(
+            image: 'jobs/${jobs[7]}',
+            job: 'Доставка',
+            name: 'Какой-то Мужик',
+            date: '26 Июня | 07:00 - 12:00',
+            location: 'ул. Хрен Знает, д. Сам придумай, кв. 12',
+          ),
         ],
       );
     }
   }
 
   Widget Completed() {
+    return Column(children: [
+      Container(
+          margin: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 20, 9, 20),
+                child: Container(
+                    height: 115,
+                    width: 115,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Image.asset(
+                      'jobs/${jobs[0]}',
+                      fit: BoxFit.fill,
+                    )),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 20, 9, 20),
+                child: Container(
+                  height: 115,
+                  width: 150,
+                  decoration: BoxDecoration(),
+                  child: Column(
+                    children: [
+                      Flexible(
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                          width: 150,
+                          child: Text(
+                            'Тех. осмотр авто',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                          child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                        width: 150,
+                        child: Text(
+                          'Алексей Смирнов',
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      )),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 16, 50, 0),
+                        width: 100,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Выполнено',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ))
+    ]);
+  }
+
+  Widget Canceled() {
     return Column(children: [
       Container(
           margin: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 5),
@@ -411,101 +469,110 @@ class _UpcomingBigCardState extends State<UpcomingBigCard> {
                   )
                 ],
               ),
-              if (_isExpanded) ...[
-                Padding(
-                    padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
-                    child: Row(
+              if (_isExpanded)
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
-                        Text(
-                          'Время и Дата',
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Время и Дата',
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                widget.date,
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: const Color.fromARGB(184, 0, 0, 0),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
-                        new Spacer(),
-                        Text(
-                          widget.date,
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: const Color.fromARGB(184, 0, 0, 0),
-                              fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Место',
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                widget.location,
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: const Color.fromARGB(184, 0, 0, 0),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
+                          child: Image.network(
+                            'https://cdn.discordapp.com/attachments/638347228917923880/1250772683277467738/b96da73938d98e49.png?ex=666c2855&is=666ad6d5&hm=b7b571e050962ce607bfceed0beec33e7e769afd46fe6646985d3d97d365d396&',
+                            height: 200,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
+                          child: Row(
+                            children: [
+                              OutlinedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    surfaceTintColor: SoftColorPurple,
+                                    fixedSize: Size(170, 40),
+                                    side: BorderSide(
+                                      width: 3,
+                                      color: SoftColorPurple,
+                                    )),
+                                child: Text(
+                                  'Отменить',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: SoftColorPurple,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Cancel(context);
+                                },
+                              ),
+                              Spacer(),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: SoftColorPurple,
+                                  fixedSize: Size(170, 40),
+                                ),
+                                child: Text(
+                                  'Квитанция',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 240, 232, 252),
+                                  ),
+                                ),
+                                onPressed: () {},
+                              )
+                            ],
+                          ),
+                        )
                       ],
-                    )),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Место',
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        new Spacer(),
-                        Text(
-                          widget.location,
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: const Color.fromARGB(184, 0, 0, 0),
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    )),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
-                  child: Image.network(
-                    'https://cdn.discordapp.com/attachments/638347228917923880/1250772683277467738/b96da73938d98e49.png?ex=666c2855&is=666ad6d5&hm=b7b571e050962ce607bfceed0beec33e7e769afd46fe6646985d3d97d365d396&',
-                    height: 200,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
-                  child: Row(
-                    children: [
-                      OutlinedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            surfaceTintColor: SoftColorPurple,
-                            fixedSize: Size(170, 40),
-                            side: BorderSide(
-                              width: 3,
-                              color: SoftColorPurple,
-                            )),
-                        child: Text(
-                          'Отменить',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: SoftColorPurple,
-                          ),
-                        ),
-                        onPressed: () {
-                          Cancel(context);
-                        },
-                      ),
-                      Spacer(),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: SoftColorPurple,
-                          fixedSize: Size(170, 40),
-                        ),
-                        child: Text(
-                          'Квитанция',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 240, 232, 252),
-                          ),
-                        ),
-                        onPressed: () {},
-                      )
-                    ],
-                  ),
-                )
-              ],
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 15),
                 child: _isExpanded
@@ -530,7 +597,7 @@ class _UpcomingBigCardState extends State<UpcomingBigCard> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                   child: Text(
-                    'Отменить Бронь',
+                    'Отменить Запись',
                     style: TextStyle(
                         color: Colors.red,
                         fontSize: 22,
@@ -542,7 +609,7 @@ class _UpcomingBigCardState extends State<UpcomingBigCard> {
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Text(
-                    'Вы уверены, что хотите отменить вашу бронь?',
+                    'Вы уверены, что хотите отменить вашу запись?',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 20,
